@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Clinical Publications – Prof. Gaetano Santulli</title>
+<title>Publications – Prof. Gaetano Santulli</title>
 
 <style>
 /* -------------------------
@@ -18,10 +18,10 @@ body {
 }
 
 /* -------------------------
-   Navigation bar (same as About page)
+   Navigation bar (slim, consistent)
 ------------------------- */
 nav {
-  background-color: #00755E; /* Tropical Rain Forest */
+  background-color: #00755E;
   padding: 12px 24px;
   position: sticky;
   top: 0;
@@ -50,7 +50,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #d0f0e8; /* subtle mint hover */
+  color: #d0f0e8;
 }
 
 /* -------------------------
@@ -77,7 +77,7 @@ nav a:hover {
 }
 
 /* -------------------------
-   PubMed list styling
+   PubMed list styling (cards)
 ------------------------- */
 ul.pub-list {
   list-style: none;
@@ -100,7 +100,7 @@ ul.pub-list li:hover {
 }
 
 strong.journal {
-  color: #36d1dc; /* light blue for journals */
+  color: #36d1dc;
 }
 
 a {
@@ -161,14 +161,14 @@ footer {
 
 <!-- Page Content -->
 <div class="content">
-  <h1>Clinical Publications</h1>
+  <h1>Peer-reviewed Publications</h1>
 
   <p class="intro">
-    Clinical (patient-oriented) peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
+    All peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA
   </p>
 
   <div id="publications">
-    <p>Loading clinical publications from PubMed…</p>
+    <p>Loading publications from PubMed…</p>
   </div>
 
   <div class="page-counter">
@@ -180,16 +180,16 @@ footer {
 /* ---------------------------
    Page visit counter
 --------------------------- */
-let count = localStorage.getItem("clinicalPageCounter") || 1200;
+let count = localStorage.getItem("pubPageCounter") || 5400;
 count++;
-localStorage.setItem("clinicalPageCounter", count);
+localStorage.setItem("pubPageCounter", count);
 document.getElementById("counter").textContent = count;
 
 /* ---------------------------
-   PubMed query (CLINICAL)
+   PubMed query
 --------------------------- */
 const query =
-"((((((Santulli, G[Author] AND ((patients[title/abstract]) OR (patient[title/abstract]) OR (aging[title/abstract]) OR (frail[title/abstract]) OR (frailty[title/abstract]) OR (tirzepatide[title/abstract])) NOT (corrigendum[Title]) NOT (spider[Title])) NOT (habitat[Title])) NOT (dogs[Title])) NOT (overproduction[Title])) NOT introduction[Title])) NOT (correction[Title])";
+"((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
 /* ---------------------------
    Journal replacements
