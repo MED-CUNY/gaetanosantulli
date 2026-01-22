@@ -7,7 +7,7 @@
 
 <style>
 /* -------------------------
-   Base styling
+   Reset & Base Styling
 ------------------------- */
 body {
   font-family: Arial, sans-serif;
@@ -55,7 +55,7 @@ nav a:hover {
   color: #d0f0e8;
 }
 
-/* Hamburger */
+/* Hamburger menu */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -66,14 +66,6 @@ nav a:hover {
   top: 12px;
 }
 
-/* Tablet */
-@media (min-width: 601px) and (max-width: 1024px) {
-  nav a {
-    font-size: 16px;
-  }
-}
-
-/* Mobile */
 @media (max-width: 600px) {
   nav ul {
     flex-direction: column;
@@ -90,27 +82,23 @@ nav a:hover {
   }
 }
 
+@media (min-width: 601px) and (max-width: 1024px) {
+  nav a {
+    font-size: 16px;
+  }
+}
+
 /* -------------------------
-   Hero Image
+   Hero Image (NO TEXT)
 ------------------------- */
 .hero {
   width: 100%;
   height: 250px;
   background: url('hero_awards.jpg') center center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  text-shadow: 1px 1px 5px #000;
-}
-
-.hero h1 {
-  font-size: 2em;
-  margin: 0;
 }
 
 /* -------------------------
-   Page content
+   Page Content
 ------------------------- */
 .content {
   max-width: 900px;
@@ -172,14 +160,65 @@ footer {
   </ul>
 </nav>
 
-<!-- Hero -->
-<div class="hero">
-  <h1>Awards & Honors</h1>
-</div>
+<!-- Hero Image -->
+<div class="hero"></div>
 
-<!-- CONTENT (UNCHANGED) -->
+<!-- Page Content -->
 <div class="content">
-  <!-- all your existing content stays exactly as-is -->
+
+  <h2>Recognitions & Awards</h2>
+  <ul>
+    <li>2026: Elected Member of the American Society for Clinical Investigation (ASCI)</li>
+    <li>2025: AHA Hypertension Award for Research Excellence</li>
+    <li>2024: ‘Thomas Force’ Mentor Award (ACC) – Mentorship to Postdoctoral Fellow Dr. Jessica Gambardella</li>
+    <li>2024: Top Reviewer: JBC, Cardiovascular Research</li>
+    <li>2023: Elected Fellow of the American Heart Association (FAHA)</li>
+    <li>2023: Valsalva Award – Italian Society of Cardiovascular Science (SIRC)</li>
+    <li>2023: Top 0.3% of 378,918 published authors worldwide on Hypertension (Expertscape)</li>
+    <li>2022: Winner - Catalytic seed grant; NCATS: NIH National Center for Advancing Translational Sciences</li>
+    <li>2021: Winner - Named 2021 "Hirschl/Weill-Caulier” Research Scholar</li>
+    <li>2020: Runner-up - Young Investigator Competition Awards (YICA) – NAS-ISHR (SENIOR TIER)</li>
+    <li>2019: Included among the Top Scientists Worldwide (METRICS, Stanford University)</li>
+    <li>2019: Finalist - AHA “Louis N. and Arnold M. Katz” Research Prize for Early Career Investigators</li>
+    <li>2019: American Physiological Society “Cardiovascular Section New Investigator Award”</li>
+    <li>2018: Full Professor of Cardiology - National Call for all Italian Universities (Qualification)</li>
+    <li>2017: Best Italian Researcher under 40y - European Cultural Institute of Brussels</li>
+    <li>2017: Sentinel Rater - McMaster University, Hamilton (CA)</li>
+    <li>2016: Finalist - American Heart Association “Melvin L. Marcus” Young Investigator Award</li>
+    <li>2016: Young Investigator Award – ISSNAF</li>
+    <li>2016: Sentinel of Science – Clarivate Analytics</li>
+    <li>2016: Included among Top Italian Scientists Worldwide, V.I.A. Academy</li>
+    <li>2015: Four Highly Cited Papers – Thomson Reuters</li>
+    <li>2015: NIH K99 Pathway to Independence Award</li>
+    <li>2015: AHA Scientist Development Grant</li>
+    <li>2014: US Presidential Award for Precision Medicine</li>
+    <li>2013: “William Harvey” Award – Italian Society of Cardiology</li>
+    <li>2013: American Heart Association Postdoctoral Fellowship</li>
+    <li>2011: Young Investigator Award – Veronesi Foundation</li>
+  </ul>
+
+  <h2>Professional Services</h2>
+  <ul>
+    <li>Grant reviewer for NIH, NSF, ERC, NYAS, Doris Duke Charitable Foundation, AHA, AFM Telethon, Ministero della Salute, Israel Science Foundation, Austrian Science Fund, Wellcome Trust, and others</li>
+  </ul>
+
+  <h2>Editorial Activities</h2>
+  <ul>
+    <li>Editor in Chief: Cell Cycle; Frontiers in Cardiovascular Endocrinology; Cardiovascular Diabetology – Endocrinology Reports</li>
+    <li>Associate Editor: BMC Medicine, Cardiovascular Diabetology, ESC Heart Failure, EJPC, Molecular Medicine, PLoS One</li>
+    <li>Editorial Board Member: JCI, Cardiovascular Research, JBC, Hypertension, JMCC, EHJ-CVP, BJP, JPET</li>
+  </ul>
+
+  <h2>Patents</h2>
+  <ul>
+    <li><strong class="title">CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW-ONSET DIABETES IN COVID-19 AND LONG COVID</strong><br>
+      <span class="meta">US-A1: 20240287608 | Application No. 18/424483</span>
+    </li>
+    <li><strong class="title">CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19</strong></li>
+    <li><strong class="title">SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION</strong></li>
+    <li><strong class="title">RETINOIC ACID RECEPTOR BETA2 AS A POTENTIAL TARGET FOR HEART FAILURE</strong></li>
+  </ul>
+
 </div>
 
 <footer>
