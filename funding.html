@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Funding - Prof. Gaetano Santulli</title>
 
 <style>
+/* -------------------------
+   Base styling
+------------------------- */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -14,6 +18,9 @@ body {
   color: #eaeaea;
 }
 
+/* -------------------------
+   Navigation bar (standardized)
+------------------------- */
 nav {
   background-color: #00755E;
   padding: 12px 24px;
@@ -29,10 +36,11 @@ nav ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav li {
-  margin-right: 22px;
+  margin: 6px 15px;
 }
 
 nav a {
@@ -47,16 +55,31 @@ nav a:hover {
   color: #d0f0e8;
 }
 
+/* Hamburger Menu for Mobile */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 24px;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
+/* -------------------------
+   Page content
+------------------------- */
 .content {
   max-width: 900px;
   margin: 60px auto;
   padding: 0 24px;
+  text-align: left;
 }
 
 .content h1 {
   color: #ffffff;
-  margin-bottom: 20px;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .content h2 {
@@ -81,13 +104,65 @@ nav a:hover {
   font-size: 15px;
 }
 
+.content a {
+  color: #36d1dc;
+  text-decoration: none;
+}
+
+.content a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------
+   Footer
+------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* -------------------------
+   Responsive: Tablet
+------------------------- */
+@media (max-width: 1024px) and (min-width: 600px) {
+  nav a {
+    font-size: 16px;
+  }
+}
+
+/* -------------------------
+   Responsive: Mobile
+------------------------- */
+@media (max-width: 599px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+    width: 100%;
+    align-items: center;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  nav li {
+    margin: 8px 0;
+  }
+  .hamburger {
+    display: block;
+  }
+}
 </style>
 </head>
 
 <body>
 
+<!-- Navigation Bar -->
 <nav>
-  <ul>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <ul id="nav-menu">
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
@@ -154,6 +229,12 @@ nav a:hover {
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('nav-menu').classList.toggle('active');
+}
+</script>
 
 </body>
 </html>
