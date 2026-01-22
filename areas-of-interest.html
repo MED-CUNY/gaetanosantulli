@@ -46,19 +46,22 @@ nav a {
 }
 
 /* -------------------------
-   Hero
+   Hero Image
 ------------------------- */
 .hero {
   width: 100%;
   height: 300px;
-  background: url('hero_areas.jpeg') center/cover no-repeat;
+  background: url('hero_areas.jpeg') center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #ffffff;
+  text-shadow: 1px 1px 5px #000;
 }
 
 .hero h1 {
   font-size: 2.2em;
+  margin: 0;
 }
 
 /* -------------------------
@@ -96,9 +99,7 @@ nav a {
   text-align: justify;
 }
 
-/* -------------------------
-   Responsive
-------------------------- */
+/* Responsive */
 @media (max-width: 900px) {
   .area {
     grid-template-columns: 1fr;
@@ -118,6 +119,7 @@ footer {
   padding: 20px;
   background-color: #00755E;
   color: #e6fff8;
+  font-size: 14px;
 }
 </style>
 </head>
@@ -131,75 +133,113 @@ footer {
 <div class="content">
 
   <div class="area">
-    <img src="cardiovascular-disease1.gif">
+    <img src="cardiovascular-disease1.gif" alt="Cardiovascular Disease">
     <div>
       <h2>Cardiovascular Disease</h2>
-      <p>We study the mechanisms underlying major cardiovascular disorders, including heart failure, hypertension, and arrhythmias.</p>
+      <p>
+        We study the mechanisms underlying major cardiovascular disorders,
+        including heart failure, hypertension, and arrhythmias. Our work has
+        identified novel molecular targets to treat these conditions, and we
+        continue to lead innovative efforts aimed at improving cardiovascular
+        outcomes.
+      </p>
     </div>
-    <img src="cardiovascular-disease2.gif">
+    <img src="cardiovascular-disease2.gif" alt="Cardiovascular Disease">
   </div>
 
   <div class="area">
-    <img src="metabolic-disorders1.gif">
+    <img src="metabolic-disorders1.gif" alt="Metabolic Disorders">
     <div>
       <h2>Metabolic Disorders</h2>
-      <p>The laboratory investigates diabetes mellitus with a focus on beta cell dysfunction and metabolic stress.</p>
+      <p>
+        The laboratory investigates the key mechanisms underlying diabetes
+        mellitus, with a particular focus on pancreatic beta cell dysfunction,
+        metabolic stress, and organ cross-talk contributing to disease
+        progression.
+      </p>
     </div>
-    <img src="metabolic-disorders2.jpg">
+    <img src="metabolic-disorders2.jpg" alt="Metabolic Disorders">
   </div>
 
   <div class="area">
-    <img src="non-coding-rna1.jpg">
+    <img src="non-coding-rna1.jpg" alt="Non-coding RNA">
     <div>
       <h2>Non-coding RNA</h2>
-      <p>We investigate microRNAs and other ncRNAs as biomarkers and therapeutic targets.</p>
+      <p>
+        We investigate the functional contribution of non-coding RNAs, including
+        microRNAs, to the pathophysiology of human disease. These molecules are
+        studied both as biomarkers and as potential therapeutic targets across
+        multiple disease contexts.
+      </p>
     </div>
-    <img src="non-coding-rna2.jpg">
+    <img src="non-coding-rna2.jpg" alt="Non-coding RNA">
   </div>
 
   <div class="area">
-    <img src="calcium1.gif">
+    <img src="calcium1.gif" alt="Calcium Signaling">
     <div>
       <h2>Calcium</h2>
-      <p>Functional roles of calcium signaling across cardiovascular, metabolic, and neuromuscular systems.</p>
+      <p>
+        The Santulli Lab investigates the functional roles of calcium signaling
+        in health and disease across diverse tissues and cell types, with
+        implications for cardiovascular, metabolic, and neuromuscular disorders.
+      </p>
     </div>
-    <img src="calcium2.jpg">
+    <img src="calcium2.jpg" alt="Calcium Signaling">
   </div>
 
   <div class="area">
-    <img src="stem-cells1.jpg">
+    <img src="stem-cells1.jpg" alt="Stem Cells">
     <div>
       <h2>Stem Cells</h2>
-      <p>Human stem cell maturation and regenerative medicine strategies.</p>
+      <p>
+        We investigate strategies to obtain mature human stem cells and apply
+        stem-cell–based approaches to human disease. To this aim, we leverage
+        state-of-the-art bioengineering and regenerative medicine technologies.
+      </p>
     </div>
-    <img src="stem-cells2.jpg">
+    <img src="stem-cells2.jpg" alt="Stem Cells">
   </div>
 
   <div class="area">
-    <img src="translational1.jpg">
+    <img src="translational-medicine1.jpg" alt="Translational Medicine">
     <div>
       <h2>Translational Medicine</h2>
-      <p>Bridging fundamental discoveries to clinical applications.</p>
+      <p>
+        Fundamental discoveries generated in the laboratory are actively
+        translated to the clinical setting, with the ultimate goal of improving
+        diagnosis, treatment, and prevention of human disease.
+      </p>
     </div>
-    <img src="translational2.jpg">
+    <img src="translational-medicine2.jpg" alt="Translational Medicine">
   </div>
 
   <div class="area">
-    <img src="aging1.jpg">
+    <img src="aging-longevity1.jpg" alt="Aging and Longevity">
     <div>
       <h2>Aging and Healthy Longevity</h2>
-      <p>Molecular mechanisms of aging, senescence, diet, and nutrition.</p>
+      <p>
+        Our laboratory investigates the physiology and biology of aging,
+        including the molecular mechanisms underlying senescence. We also study
+        the roles of diet and nutrition in promoting healthy longevity.
+      </p>
     </div>
-    <img src="aging2.jpg">
+    <img src="aging-longevity2.jpg" alt="Aging and Longevity">
   </div>
 
   <div class="area">
-    <img src="clinical1.jpg">
+    <img src="clinical-research1.jpg" alt="Clinical Research">
     <div>
       <h2>Clinical Research</h2>
-      <p>Clinical research in cardiovascular medicine, diabetes, and aging.</p>
+      <p>
+        We conduct clinical research in the fields of cardiovascular medicine,
+        diabetes, and aging. Please find
+        <a href="clinical-publications.html" style="color:#36d1dc; text-decoration:none;">
+          here our clinical publications
+        </a>.
+      </p>
     </div>
-    <img src="clinical2.jpg">
+    <img src="clinical-research2.jpg" alt="Clinical Research">
   </div>
 
 </div>
