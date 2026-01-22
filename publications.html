@@ -18,11 +18,11 @@ body {
 }
 
 /* -------------------------
-   Navigation bar
+   Navigation bar (slim)
 ------------------------- */
 nav {
-  background-color: #00755E; /* match other pages */
-  padding: 12px 24px;
+  background-color: #00755E;
+  padding: 12px 24px; /* slim padding like Awards & Honors */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -62,34 +62,38 @@ nav a:hover {
   padding: 0 24px;
 }
 
-h1 {
+.content h1 {
   text-align: center;
   margin-bottom: 40px;
   color: #ffffff;
 }
 
-a {
+.content p {
+  margin-bottom: 20px;
+}
+
+.content a {
   color: #36d1dc;
   text-decoration: none;
   transition: color 0.3s;
 }
 
-a:hover {
+.content a:hover {
   color: #5b86e5;
   text-decoration: underline;
 }
 
-ul {
+.content ul {
   list-style: none;
   padding-left: 0;
 }
 
-li {
+.content li {
   margin-bottom: 22px;
   transition: transform 0.2s;
 }
 
-li:hover {
+.content li:hover {
   transform: scale(1.02);
 }
 
@@ -147,8 +151,8 @@ footer {
 </nav>
 
 <div class="content">
-  <h1>Peer-reviewed Publications</h1>
-  <p>All peer-reviewed publications authored by Prof. Gaetano Santulli, MD, PhD, FAHA are listed below.</p>
+  <h1>Publications</h1>
+  <p></p>
 
   <div id="publications">
     <p>Loading publications...</p>
