@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Books & Book Chapters - Prof. Gaetano Santulli</title>
 
 <style>
@@ -35,6 +36,7 @@ nav ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav li {
@@ -51,6 +53,43 @@ nav a {
 
 nav a:hover {
   color: #d0f0e8;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 24px;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+    width: 100%;
+    align-items: center;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  nav li {
+    margin: 10px 0;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Tablet */
+@media (min-width: 601px) and (max-width: 1024px) {
+  nav a {
+    font-size: 16px;
+  }
 }
 
 /* -------------------------
@@ -87,15 +126,26 @@ nav a:hover {
 }
 
 .content strong.book-title {
-  color: #36d1dc; /* light blue for titles */
+  color: #36d1dc;
 }
 
 .content strong.publisher {
-  color: #00755E; /* dark green for publishers */
+  color: #00755E;
 }
 
 .content u {
   text-decoration: underline;
+}
+
+/* -------------------------
+   Footer
+------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  font-size: 14px;
 }
 </style>
 </head>
@@ -104,7 +154,8 @@ nav a:hover {
 
 <!-- Navigation Bar -->
 <nav>
-  <ul>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <ul id="nav-menu">
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
@@ -136,6 +187,10 @@ nav a:hover {
 </footer>
 
 <script>
+function toggleMenu() {
+  document.getElementById('nav-menu').classList.toggle('active');
+}
+
 // ---------------------------
 // Books & Chapters Data
 // ---------------------------
@@ -160,9 +215,6 @@ const chapters = [
   ["Stanislovas S. Jankauskas et al.","MICRORNA AND DIABETES","MicroRNA: From Bench to Bedside. Elsevier","2022"]
 ];
 
-// ---------------------------
-// Render Functions
-// ---------------------------
 function renderBooks() {
   const list = document.getElementById('books-list');
   books.forEach(b => {
