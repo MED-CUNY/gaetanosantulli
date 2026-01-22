@@ -55,6 +55,17 @@ nav a:hover {
   color: #d0f0e8;
 }
 
+/* Hamburger Menu for Mobile */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 24px;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
 /* -------------------------
    Page content
 ------------------------- */
@@ -190,6 +201,10 @@ footer {
     width: 90px;
     height: 90px;
   }
+
+  nav a {
+    font-size: 16px;
+  }
 }
 
 /* -------------------------
@@ -227,11 +242,21 @@ footer {
 
   nav ul {
     flex-direction: column;
+    display: none;
+    width: 100%;
     align-items: center;
+  }
+
+  nav ul.active {
+    display: flex;
   }
 
   nav li {
     margin: 8px 0;
+  }
+
+  .hamburger {
+    display: block;
   }
 }
 </style>
@@ -241,7 +266,8 @@ footer {
 
 <!-- Navigation Bar -->
 <nav>
-  <ul>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <ul id="nav-menu">
     <li><a href="about.html">About</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="publications.html">Publications</a></li>
@@ -328,6 +354,11 @@ team.forEach(member => {
   `;
   teamGrid.appendChild(memberDiv);
 });
+
+// Hamburger toggle
+function toggleMenu() {
+  document.getElementById('nav-menu').classList.toggle('active');
+}
 </script>
 
 </body>
