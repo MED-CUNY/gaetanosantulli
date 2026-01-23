@@ -106,71 +106,82 @@ nav a:hover {
 ------------------------- */
 .content {
   max-width: 1100px;
-  margin: 80px auto 100px; /* increased top/bottom spacing */
-  padding: 0 30px; /* increased padding */
+  margin: 100px auto 120px;
+  padding: 0 36px;
 }
 
 .area {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  gap: 40px; /* increased gap */
-  margin-bottom: 90px; /* increased spacing between areas */
+  gap: 50px;
+  margin-bottom: 120px;
   align-items: center;
+  padding: 20px 25px;
+  border-left: 5px solid #36d1dc; /* left colored border */
+  background-color: rgba(255,255,255,0.03); /* subtle background */
+  border-radius: 12px; /* slightly rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover effect for entire area */
+.area:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px rgba(255,255,255,0.25);
+  background-color: rgba(255,255,255,0.06);
 }
 
 .area img {
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 6px 15px rgba(255,255,255,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* hover effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Hover effect for images */
 .area img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 10px 25px rgba(255,255,255,0.2);
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(255,255,255,0.25);
 }
 
 .area h2 {
   color: #36d1dc;
   font-size: 22px;
-  margin-bottom: 14px; /* slightly increased margin */
+  margin-bottom: 16px;
 }
 
 .area p {
   color: #d0d0d0;
   font-size: 16px;
   text-align: justify;
-  line-height: 1.7; /* increased line-height for readability */
+  line-height: 1.8;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
 /* -------------------------
    Responsive: tablet & mobile
-   → stacked single image
 ------------------------- */
 @media (max-width: 900px) {
   .area {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 30px; /* slightly smaller gap for mobile */
-    margin-bottom: 60px; /* adjust spacing for mobile */
+    gap: 35px;
+    margin-bottom: 80px;
+    border-left: none; /* remove left border on mobile */
+    padding: 20px 15px;
   }
 
-  /* hide second image */
   .area img:last-child {
     display: none;
   }
 
-  /* stack image above text */
   .area div {
-    order: 2; /* text comes after image */
+    order: 2;
   }
 
   .area img:first-child {
     order: 1;
-    margin-bottom: 25px; /* spacing between image and text */
+    margin-bottom: 30px;
   }
 
   .area p {
@@ -183,7 +194,7 @@ nav a:hover {
 ------------------------- */
 footer {
   text-align: center;
-  padding: 25px;
+  padding: 30px;
   background-color: #00755E;
   color: #e6fff8;
   font-size: 14px;
