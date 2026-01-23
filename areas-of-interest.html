@@ -117,8 +117,8 @@ nav a:hover {
   margin-bottom: 120px;
   align-items: center;
   padding: 20px 25px;
-  border-left: 5px solid #36d1dc; /* default left border */
-  background-color: rgba(255,255,255,0.03); /* subtle background */
+  border-left: 5px solid #36d1dc;
+  border-right: 5px solid #36d1dc;
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
@@ -127,9 +127,9 @@ nav a:hover {
 .area:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 35px rgba(255,255,255,0.25);
-  background-color: rgba(255,255,255,0.06);
 }
 
+/* Image styling */
 .area img {
   width: 100%;
   border-radius: 10px;
@@ -137,17 +137,17 @@ nav a:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect for images */
 .area img:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 30px rgba(255,255,255,0.25);
 }
 
+/* Titles and text */
 .area h2 {
   color: #36d1dc;
   font-size: 22px;
   margin-bottom: 16px;
-  text-align: center; /* centered title */
+  text-align: center;
 }
 
 .area p {
@@ -160,16 +160,16 @@ nav a:hover {
 }
 
 /* -------------------------
-   Specific colors for each area
+   Distinct border & subtle background per area
 ------------------------- */
-.area:nth-child(1) { border-left-color: #36d1dc; }  /* Cardiovascular - cyan */
-.area:nth-child(2) { border-left-color: #ff6f61; }  /* Metabolic - coral */
-.area:nth-child(3) { border-left-color: #9b59b6; }  /* Non-coding RNA - purple */
-.area:nth-child(4) { border-left-color: #f1c40f; }  /* Calcium - yellow */
-.area:nth-child(5) { border-left-color: #e67e22; }  /* Stem Cells - orange */
-.area:nth-child(6) { border-left-color: #1abc9c; }  /* Translational Medicine - teal */
-.area:nth-child(7) { border-left-color: #3498db; }  /* Aging - blue */
-.area:nth-child(8) { border-left-color: #e74c3c; }  /* Clinical Research - red */
+.area:nth-child(1) { border-color: #36d1dc; background-color: rgba(54, 209, 220, 0.05); }  /* Cardiovascular */
+.area:nth-child(2) { border-color: #ff6f61; background-color: rgba(255, 111, 97, 0.05); }  /* Metabolic */
+.area:nth-child(3) { border-color: #9b59b6; background-color: rgba(155, 89, 182, 0.05); }  /* Non-coding RNA */
+.area:nth-child(4) { border-color: #f1c40f; background-color: rgba(241, 196, 15, 0.05); }  /* Calcium */
+.area:nth-child(5) { border-color: #e67e22; background-color: rgba(230, 126, 34, 0.05); }  /* Stem Cells */
+.area:nth-child(6) { border-color: #1abc9c; background-color: rgba(26, 188, 156, 0.05); }  /* Translational Medicine */
+.area:nth-child(7) { border-color: #3498db; background-color: rgba(52, 152, 219, 0.05); }  /* Aging */
+.area:nth-child(8) { border-color: #e74c3c; background-color: rgba(231, 76, 60, 0.05); }  /* Clinical Research */
 
 /* -------------------------
    Responsive: tablet & mobile
@@ -181,6 +181,7 @@ nav a:hover {
     gap: 35px;
     margin-bottom: 80px;
     border-left: none;
+    border-right: none;
     padding: 20px 15px;
   }
 
