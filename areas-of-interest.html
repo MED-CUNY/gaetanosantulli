@@ -136,15 +136,33 @@ nav a:hover {
   text-align: justify;
 }
 
-/* Responsive content */
+/* -------------------------
+   Responsive: tablet & mobile
+   → stacked single image
+------------------------- */
 @media (max-width: 900px) {
   .area {
     grid-template-columns: 1fr;
     text-align: center;
   }
 
+  /* hide second image */
+  .area img:last-child {
+    display: none;
+  }
+
+  /* stack image above text */
+  .area div {
+    order: 2; /* text comes after image */
+  }
+
+  .area img:first-child {
+    order: 1;
+    margin-bottom: 20px;
+  }
+
   .area p {
-    text-align: left;
+    text-align: center;
   }
 }
 
@@ -188,7 +206,7 @@ footer {
 <div class="content">
 
   <div class="area">
-    <img src="cardiovascular-disease2.gif">
+    <img src="cardiovascular-disease2.gif" alt="Cardiovascular Disease">
     <div>
       <h2>Cardiovascular Disease</h2>
       <p>
@@ -199,11 +217,11 @@ footer {
         outcomes.
       </p>
     </div>
-    <img src="cardiovascular-disease1.gif">
+    <img src="cardiovascular-disease1.gif" alt="Cardiovascular Disease">
   </div>
 
   <div class="area">
-    <img src="metabolic-disorders1.gif">
+    <img src="metabolic-disorders1.gif" alt="Metabolic Disorders">
     <div>
       <h2>Metabolic Disorders</h2>
       <p>
@@ -213,11 +231,11 @@ footer {
         progression.
       </p>
     </div>
-    <img src="metabolic-disorders2.gif">
+    <img src="metabolic-disorders2.gif" alt="Metabolic Disorders">
   </div>
 
   <div class="area">
-    <img src="gel.gif">
+    <img src="gel.gif" alt="Non-coding RNA">
     <div>
       <h2>Non-coding RNA</h2>
       <p>
@@ -227,11 +245,11 @@ footer {
         multiple disease contexts.
       </p>
     </div>
-    <img src="rna.gif">
+    <img src="rna.gif" alt="Non-coding RNA">
   </div>
 
   <div class="area">
-    <img src="calcium1.gif">
+    <img src="calcium1.gif" alt="Calcium">
     <div>
       <h2>Calcium</h2>
       <p>
@@ -240,11 +258,11 @@ footer {
         implications for cardiovascular, metabolic, and neuromuscular disorders.
       </p>
     </div>
-    <img src="calcium2.gif">
+    <img src="calcium2.gif" alt="Calcium">
   </div>
 
   <div class="area">
-    <img src="stemcell.gif">
+    <img src="stemcell.gif" alt="Stem Cells">
     <div>
       <h2>Stem Cells</h2>
       <p>
@@ -253,11 +271,11 @@ footer {
         state-of-the-art bioengineering and regenerative medicine technologies.
       </p>
     </div>
-    <img src="stem2.gif">
+    <img src="stem2.gif" alt="Stem Cells">
   </div>
 
   <div class="area">
-    <img src="translat.gif">
+    <img src="translat.gif" alt="Translational Medicine">
     <div>
       <h2>Translational Medicine</h2>
       <p>
@@ -266,11 +284,11 @@ footer {
         diagnosis, treatment, and prevention of human disease.
       </p>
     </div>
-    <img src="AI.gif">
+    <img src="AI.gif" alt="Translational Medicine">
   </div>
 
   <div class="area">
-    <img src="aging.gif">
+    <img src="aging.gif" alt="Aging and Healthy Longevity">
     <div>
       <h2>Aging and Healthy Longevity</h2>
       <p>
@@ -279,11 +297,11 @@ footer {
         the roles of diet and nutrition in promoting healthy longevity.
       </p>
     </div>
-    <img src="aging2.gif">
+    <img src="aging2.gif" alt="Aging and Healthy Longevity">
   </div>
 
   <div class="area">
-    <img src="lungs.gif">
+    <img src="lungs.gif" alt="Clinical Research">
     <div>
       <h2>Clinical Research</h2>
       <p>
@@ -294,7 +312,7 @@ footer {
         </a>.
       </p>
     </div>
-    <img src="surg2.gif">
+    <img src="surg2.gif" alt="Clinical Research">
   </div>
 
 </div>
