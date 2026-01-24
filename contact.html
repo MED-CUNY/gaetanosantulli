@@ -10,10 +10,10 @@
    Reset & base styling
 ------------------------- */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  line-height: 1.7;
   background-color: #000000;
   color: #eaeaea;
 }
@@ -23,7 +23,7 @@ body {
 ------------------------- */
 nav {
   background-color: #00755E;
-  padding: 12px 24px;
+  padding: 14px 24px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -60,7 +60,7 @@ nav a:hover {
   display: none;
   cursor: pointer;
   color: #ffffff;
-  font-size: 24px;
+  font-size: 26px;
   position: absolute;
   right: 20px;
   top: 12px;
@@ -75,16 +75,10 @@ nav a:hover {
     display: flex;
   }
   nav li {
-    margin: 10px 0;
+    margin: 12px 0;
   }
   .hamburger {
     display: block;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
-  nav a {
-    font-size: 16px;
   }
 }
 
@@ -97,10 +91,12 @@ nav a:hover {
   object-fit: cover;
   display: block;
   margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 /* -------------------------
-   Page content
+   Page Content
 ------------------------- */
 .content {
   max-width: 900px;
@@ -108,62 +104,48 @@ nav a:hover {
   padding: 0 24px;
 }
 
-.content h1, .content h2 {
+.content h1 {
   color: #ffffff;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: 2.2em;
 }
 
 .content p {
   color: #cccccc;
-  font-size: 16px;
-  margin-bottom: 15px;
+  font-size: 17px;
+  margin-bottom: 25px;
+  text-align: center;
+  line-height: 1.8;
 }
 
 /* -------------------------
-   Contact Form
+   Contact Info Box
 ------------------------- */
-form label {
-  display: block;
-  margin-bottom: 5px;
+.contact-info {
+  background-color: rgba(54, 209, 220, 0.05);
+  border-left: 5px solid #36d1dc;
+  border-radius: 10px;
+  padding: 25px 20px;
+  margin: 40px 0;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(54,209,220,0.3);
+}
+
+.contact-info a {
+  color: #36d1dc;
+  text-decoration: none;
   font-weight: bold;
 }
 
-form input, form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: none;
-  background-color: #111111;
-  color: #eaeaea;
-  transition: box-shadow 0.3s, border 0.3s;
-}
-
-form input::placeholder, form textarea::placeholder {
-  color: #888888;
-}
-
-form input:focus, form textarea:focus {
-  outline: none;
-  box-shadow: 0 0 12px #36d1dc;
-  border: 1px solid #36d1dc;
-}
-
-form button {
-  padding: 12px 25px;
-  background-color: #36d1dc;
-  color: #000000;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-form button:hover, form button:focus {
-  background-color: #5b86e5;
-  box-shadow: 0 0 15px #36d1dc, 0 4px 10px rgba(54, 209, 220, 0.5);
+.contact-info a:hover {
+  color: #5b86e5;
+  text-decoration: underline;
 }
 
 /* -------------------------
@@ -171,7 +153,7 @@ form button:hover, form button:focus {
 ------------------------- */
 .donation {
   display: flex;
-  gap: 30px;
+  gap: 40px;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
@@ -179,33 +161,28 @@ form button:hover, form button:focus {
 
 .donation div {
   text-align: center;
+  background-color: rgba(91, 134, 229, 0.1);
+  padding: 20px;
+  border-radius: 12px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .donation div:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.25);
 }
 
 .donation img {
   width: 150px;
   height: 150px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 12px;
+  border: 2px solid #36d1dc;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* -------------------------
-   Links
-------------------------- */
-a {
-  color: #5b86e5;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #d0f0e8;
-  text-decoration: underline;
+.donation img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(54,209,220,0.4);
 }
 
 /* -------------------------
@@ -213,7 +190,7 @@ a:hover {
 ------------------------- */
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   background-color: #00755E;
   color: #e6fff8;
   margin-top: 60px;
@@ -241,54 +218,33 @@ footer {
 </nav>
 
 <!-- Hero Image -->
-<img src="hero_contact.jpeg" alt="Hero Image" class="hero">
+<img src="hero_contact.jpeg" alt="Contact Hero" class="hero">
 
 <!-- Page Content -->
 <div class="content">
 
   <h1>Contact Prof. Gaetano Santulli</h1>
-  <p>If you have questions or would like to get in touch, please use the form below.</p>
+  <p>For inquiries regarding research, collaborations, or speaking engagements, please use the contact information below.</p>
 
-  <!-- Contact Form -->
-  <form>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" placeholder="John Doe">
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" placeholder="johndoe@example.com">
-
-    <label for="subject">Subject:</label>
-    <input type="text" id="subject" name="subject" placeholder="Question about publications">
-
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" rows="6" placeholder="Write your message here..."></textarea>
-
-    <button type="submit">Send</button>
-  </form>
-
-  <!-- Contact Info -->
-  <p style="margin-top:30px;">
-    <strong>Contact Info:</strong><br>
-    Prof. Gaetano Santulli, MD, PhD, FAHA<br>
-    Medical Professor - Clinical (Full Professor - Cardiologist)<br>
-    City University of New York - School of Medicine, Manhattan, NY<br>
-    Email: <a href="mailto:gsantulli001@gmail.com">gsantulli001@gmail.com</a><br>
-  </p>
+  <!-- Contact Info Box -->
+  <div class="contact-info">
+    <p><strong>Prof. Gaetano Santulli, MD, PhD, FAHA</strong></p>
+    <p>Medical Professor - Clinical (Full Professor - Cardiologist)</p>
+    <p>City University of New York - School of Medicine, Manhattan, NY</p>
+    <p>Email: <a href="mailto:gsantulli001@gmail.com">gsantulli001@gmail.com</a></p>
+  </div>
 
   <!-- Donation Section -->
-  <h2>Support Our Work / Donate</h2>
+  <h2>Support Our Work</h2>
   <p>If you would like to support our research and educational activities, you can donate via PayPal or Venmo:</p>
 
   <div class="donation">
-    <!-- PayPal -->
     <div>
       <a href="https://www.paypal.com/qrcodes/p2pqrc/HLTZMT9X249QN" target="_blank">
         <img src="paypal.png" alt="PayPal QR Code">
       </a>
       <p>PayPal</p>
     </div>
-
-    <!-- Venmo -->
     <div>
       <a href="https://venmo.com/code?user_id=3952225357400095618&created=1769036924.992568" target="_blank">
         <img src="venmo.png" alt="Venmo QR Code">
