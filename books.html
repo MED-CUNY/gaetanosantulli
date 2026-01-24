@@ -6,6 +6,9 @@
 <title>Books & Book Chapters - Prof. Gaetano Santulli</title>
 
 <style>
+/* -------------------------
+   Base styling
+------------------------- */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -15,6 +18,9 @@ body {
   color: #B8BDC7;
 }
 
+/* -------------------------
+   Navigation bar (IDENTICAL to About)
+------------------------- */
 nav {
   background-color: #00755E;
   padding: 12px 24px;
@@ -23,6 +29,7 @@ nav {
   z-index: 100;
   border-bottom: 1px solid rgba(255,255,255,0.2);
 }
+
 nav ul {
   list-style: none;
   margin: 0;
@@ -31,9 +38,11 @@ nav ul {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 nav li {
   margin-right: 22px;
 }
+
 nav a {
   color: #ffffff;
   text-decoration: none;
@@ -41,7 +50,12 @@ nav a {
   font-size: 14px;
   transition: color 0.3s ease;
 }
-nav a:hover { color: #d0f0e8; }
+
+nav a:hover {
+  color: #d0f0e8;
+}
+
+/* Hamburger */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -51,14 +65,36 @@ nav a:hover { color: #d0f0e8; }
   right: 20px;
   top: 12px;
 }
-@media (max-width: 600px) {
-  nav ul { flex-direction: column; display: none; width: 100%; align-items: center; }
-  nav ul.active { display: flex; }
-  nav li { margin: 10px 0; }
-  .hamburger { display: block; }
-}
-@media (min-width: 601px) and (max-width: 1024px) { nav a { font-size: 16px; } }
 
+/* Mobile */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+    width: 100%;
+    align-items: center;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  nav li {
+    margin: 10px 0;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Tablet */
+@media (min-width: 601px) and (max-width: 1024px) {
+  nav a {
+    font-size: 16px;
+  }
+}
+
+/* -------------------------
+   Hero
+------------------------- */
 .hero {
   width: 100%;
   height: 300px;
@@ -70,41 +106,99 @@ nav a:hover { color: #d0f0e8; }
   text-shadow: 1px 1px 5px #000;
   margin-bottom: 40px;
 }
-.hero h1 { font-size: 2.2em; margin: 0; text-align: center; }
 
-.content { max-width: 900px; margin: 0 auto 60px auto; padding: 0 24px; }
-.content h1 { color: #F5F5F5; margin-bottom: 20px; text-align: center; }
-.content h2 { color: #36d1dc; margin-top: 40px; }
-
-ul { padding-left: 0; }
-li { list-style: none; }
-
-.card {
-  background-color: #161616;
-  padding: 18px 20px;
-  margin-bottom: 18px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-  transition: transform 0.2s, box-shadow 0.2s;
+.hero h1 {
+  font-size: 2.2em;
+  margin: 0;
+  text-align: center;
 }
-.card:hover { transform: scale(1.02); box-shadow: 0 6px 12px rgba(0,0,0,0.7); }
 
-strong.book-title { color: #F5F5F5; transition: color 0.3s; }
-strong.book-title:hover { color: #8EC9FF; }
-ul#chapters-list strong.book-title { color: #4DD0E1; transition: color 0.3s; }
-ul#chapters-list strong.book-title:hover { color: #81D8F7; }
-strong.publisher { color: #6FCF97; }
-em { color: #B8BDC7; }
-u { text-decoration: underline; }
-a { color: inherit; text-decoration: underline; transition: color 0.3s; }
-a:hover { color: #8EC9FF; }
+/* -------------------------
+   Page content
+------------------------- */
+.content {
+  max-width: 900px;
+  margin: 0 auto 60px auto;
+  padding: 0 24px;
+}
 
-footer { text-align: center; padding: 20px; background-color: #00755E; color: #e6fff8; font-size: 14px; }
+.content h1 {
+  color: #F5F5F5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.content h2 {
+  color: #4DD0E1;
+  margin-top: 40px;
+}
+
+.content ul {
+  padding-left: 20px;
+}
+
+.content li {
+  margin-bottom: 12px;
+  transition: transform 0.2s;
+}
+
+.content li:hover {
+  transform: scale(1.02);
+}
+
+.content a {
+  color: #F5F5F5;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.content a:hover {
+  color: #8EC9FF;
+  text-decoration: underline;
+}
+
+.content strong.book-title {
+  color: #F5F5F5;
+}
+
+.content strong.publisher {
+  color: #6FCF97;
+}
+
+.content u {
+  text-decoration: underline;
+}
+
+/* -------------------------
+   Page counter
+------------------------- */
+.page-counter {
+  margin-top: 50px;
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(90deg, #36d1dc, #5b86e5);
+  border-radius: 10px;
+}
+
+/* -------------------------
+   Footer
+------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  font-size: 14px;
+}
 </style>
 </head>
 
 <body>
 
+<!-- Navigation Bar -->
 <nav>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <ul id="nav-menu">
@@ -120,19 +214,21 @@ footer { text-align: center; padding: 20px; background-color: #00755E; color: #e
   </ul>
 </nav>
 
+<!-- Hero -->
 <div class="hero">
   <h1>Books</h1>
 </div>
 
+<!-- Page Content -->
 <div class="content">
-  <p style="color:#36d1dc; font-weight:bold; font-size:18px;">
-    Books and Book Chapters edited or authored by Prof. Gaetano Santulli
-  </p>
+  <h1>Books & Book Chapters</h1>
+
+  <p style="font-weight:bold; color:#B8BDC7;">Books and Book Chapters edited or authored by Prof. Gaetano Santulli</p>
 
   <h2>Books</h2>
   <ul id="books-list"></ul>
 
-  <h2>Book Chapters (Selection)</h2>
+  <h2>Book Chapters</h2>
   <ul id="chapters-list"></ul>
 </div>
 
@@ -141,35 +237,86 @@ footer { text-align: center; padding: 20px; background-color: #00755E; color: #e
 </footer>
 
 <script>
-function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
+function toggleMenu() {
+  document.getElementById('nav-menu').classList.toggle('active');
+}
 
-// Books & Chapters Data
+/* ---------------------------
+   Page counter
+--------------------------- */
+let count = localStorage.getItem("booksPageCounter") || 5400;
+count++;
+localStorage.setItem("booksPageCounter", count);
+document.querySelector(".page-counter")?.textContent = count;
+
+/* ---------------------------
+   Books data (newest → oldest)
+--------------------------- */
 const books = [
   ["Gaetano Santulli", "<a href='https://www.amazon.com/Dietary-Supplements-Cardiovascular-Metabolic-Diseases/dp/3725812950' target='_blank'>Dietary Supplements in Cardiovascular and Metabolic Diseases.</a>", "MDPI", 2024, "978-3-7258-1295-0"],
   ["Gaetano Santulli", "<a href='https://books.google.com/books/about/Methods_and_Applications_in_Clinical_and.html?id=t565EAAAQBAJ' target='_blank'>Methods and Applications in Clinical and Translational Physiology.</a>", "Frontiers", 2023, "9782832520437"],
-  ["Gaetano Santulli", "<a href='https://www.amazon.com/Translational-Aspects-Cardiovascular-Biology-Bedside/dp/3036575751' target='_blank'>Translational Aspects of Cardiovascular Biology: From Bench to Bedside.</a>", "MDPI", 2023, "978-3-0365-7575-9"],
-  ["Gaetano Santulli", "<a href='https://www.amazon.com/Influence-Lifestyle-Factors-Management-Diabetes/dp/2832533455' target='_blank'>Influence of lifestyle factors in the management of diabetes mellitus.</a>", "Apple Books - Frontiers Media", 2023, "978-2-8325-3345-1; DOI 10.3389/978-2-8325-3345-1"],
-  ["Gaetano Santulli", "<a href='https://www.amazon.com/Cardiovascular-Disease-Molecular-Mechanisms-Clinical/dp/3036509938' target='_blank'>Cardiovascular Disease: From Molecular Mechanisms to Clinical Therapies.</a>", "MDPI", 2021, "978-3-0365-0993-8"],
+  ["Gaetano Santulli", "<a href='https://www.amazon.com/Translational-Aspects-Cardiovascular-Biology-Bedside/dp/3036575758' target='_blank'>Translational Aspects of Cardiovascular Biology: From Bench to Bedside.</a>", "MDPI", 2023, "978-3-0365-7575-9"],
+  ["Gaetano Santulli", "<a href='https://www.frontiersin.org/research-topics/47044/influence-of-lifestyle-factors-in-the-management-of-diabetes-mellitus/magazine' target='_blank'>Influence of lifestyle factors in the management of diabetes mellitus.</a>", "Apple Books - Frontiers Media", 2023, "978-2-8325-3345-1"],
+  ["Gaetano Santulli", "<a href='https://www.amazon.com/Cardiovascular-Disease-Molecular-Mechanisms-Therapies/dp/3036509933' target='_blank'>Cardiovascular Disease: From Molecular Mechanisms to Clinical Therapies.</a>", "MDPI", 2021, "978-3-0365-0993-8"],
   ["Gaetano Santulli", "<a href='https://www.amazon.com/Cardiovascular-Disease-Diabetes-Journey-Bench/dp/2889459995' target='_blank'>Cardiovascular Disease and Diabetes: A Journey from Bench to Bedside.</a>", "Frontiers", 2019, "9782889459995"],
   ["Gaetano Santulli", "<a href='http://www.mdpi.com/books/pdfview/book/269' target='_blank'>Diet and Metabolic Dysfunction</a>", "MDPI", 2017, "978-3038423225, 978-3038423249"],
-  ["Gaetano Santulli", "<a href='http://www.springer.com/us/book/9783319553290' target='_blank'>Mitochondrial dynamics in cardiovascular medicine</a>", "Springer-Nature", 2017, "978-3-319-55329-0"],
+  ["Gaetano Santulli", "<a href='http://www.springer.com/us/book/9783319553290' target='_blank'>Mitochondrial dynamics in cardiovascular medicine.</a>", "Springer-Nature", 2017, "978-3-319-55329-0"],
   ["Gaetano Santulli", "<a href='http://www.springer.com/us/book/9783319226705' target='_blank'>microRNA: from molecular biology to clinical practice</a>", "Springer", 2016, "978-3319223797, 978-3319237299, 978-3-319-22670-5"],
-  ["Gaetano Santulli", "<a href='https://www.novapublishers.com/catalog/product_info.php?products_id=55812&osCsid=216c59cd0951c5e27f46f013d695f9b4' target='_blank'>Adrenal Glands: FROM PATHOPHYSIOLOGY TO CLINICAL PRACTICE.</a>", "Nova Publishers Inc.", 2015, "978-1634835503"],
-  ["Gaetano Santulli", "<a href='https://sites.einsteinmed.edu/santulli-lab/book-chapters#http://www.amazon.com/Angiogenesis-Insights-Systematic-Gaetano-Santulli/dp/1626181144' target='_blank'>ANGIOGENESIS: INSIGHTS FROM A SYSTEMATIC OVERVIEW</a>", "Nova Publishers Inc.", 2013, "978-1-62618-114-4"]
+  ["Gaetano Santulli", "<a href='https://novapublishers.com/shop/angiogenesis-insights-from-a-systematic-overview/' target='_blank'>ANGIOGENESIS: INSIGHTS FROM A SYSTEMATIC OVERVIEW</a>", "Nova Publishers Inc.", 2013, "978-1-62618-114-4"],
+  ["Gaetano Santulli", "<a href='https://novapublishers.com/shop/adrenal-glands-from-pathophysiology-to-clinical-evidence/' target='_blank'>Adrenal Glands: FROM PATHOPHYSIOLOGY TO CLINICAL EVIDENCE.</a>", "Nova Publishers Inc.", 2015, "978-1634835503"]
 ];
 
+/* ---------------------------
+   Book chapters data
+--------------------------- */
 const chapters = [
-  ["Gaetano Santulli, et al.", "<a href='https://shop.elsevier.com/books/microrna/xiao/978-0-323-89774-7' target='_blank'>microRNAs in diabetes</a>", "MicroRNA: From Bench to Bedside", "Elsevier", 2022],
-  ["Gaetano Santulli, Daniel Lewis, Andrew Marks, Joachim Frank", "<a href='https://www.springer.com/gp/book/9789811077562' target='_blank'>Ryanodine receptor structure and function in health and disease</a>", "Membrane-bound Macromolecular Protein Complexes: Structure and Function", "Springer-Nature", 2018],
-  ["Daniela Sorriento, Gaetano Santulli, et al.", "<a href='https://www.researchgate.net/publication/323654822_The_Amino-Terminal_Domain_of_GRK5_Inhibits_Cardiac_Hypertrophy_through_the_Regulation_of_Calcium-Calmodulin_Dependent_Transcription_Factors' target='_blank'>The Amino-Terminal Domain of GRK5 Inhibits Cardiac Hypertrophy through the Regulation of Calcium/Calmodulin Dependent Transcription Factors</a>", "Calcium Signaling in Human Health and Diseases", "MDPI", 2018],
-  ["Jessica Gambardella, Bruno Trimarco, Guido Iaccarino, Gaetano Santulli", "<a href='https://www.researchgate.net/publication/320062765_New_Insights_in_Cardiac_Calcium_Handling_and_Excitation-Contraction_Coupling' target='_blank'>New Insights in Cardiac Calcium Handling and Excitation-Contraction Coupling</a>", "Heart Failure: From Research to Clinical Practice", "Springer-Nature", 2017],
-  ["M. Ciccarelli, D. Sorriento, E. Coscioni, G. Iaccarino, Gaetano Santulli", "<a href='https://www.researchgate.net/publication/307856141_Adrenergic_Receptors' target='_blank'>Adrenergic Receptors</a>", "Endocrinology of the heart in health and disease", "Elsevier", 2016],
-  ["Gaetano Santulli, et al.", "<a href='http://benthamscience.com/journal/abstracts.php?journalID=cmp&articleID=131131' target='_blank'>Essential roles of intracellular calcium release channels in muscle, brain and metabolism.</a>", "50th Anniversary of Calcium Channel Research: Biomedical Perspectives", "Bentham Science", 2015],
-  ["Gaetano Santulli", "<a href='http://link.springer.com/chapter/10.1007%2F978-3-319-13680-6_6' target='_blank'>The adrenergic system in cardiovascular metabolism and aging</a>", "The cardiovascular adrenergic system", "Springer", 2018],
-  ["Gaetano Santulli", "<a href='http://link.springer.com/chapter/10.1007%2F978-3-319-15961-4_5' target='_blank'>Sympathetic Nervous System Signaling in Heart Failure and Cardiac Aging</a>", "Pathophysiology and Pharmacotherapy of Cardiovascular Disease", "Springer", 2015]
+  ["Gaetano Santulli", "microRNAs in diabetes", "https://shop.elsevier.com/books/microrna/xiao/978-0-323-89774-7", "In MicroRNA: From Bench to Bedside", "Editors: Dr. J. Xiao; eds. Elsevier", 2022],
+  ["Gaetano Santulli, Daniel Lewis, Andrew Marks, Joachim Frank", "Ryanodine receptor structure and function in health and disease", "https://www.springer.com/gp/book/9789811077562", "In Membrane-bound Macromolecular Protein Complexes: Structure and Function", "Editors: Dr. J. Robin Harris and E. Boekema; eds. Springer-Nature", 2018],
+  ["Daniela Sorriento, Gaetano Santulli et al.", "The Amino-Terminal Domain of GRK5 Inhibits Cardiac Hypertrophy through the Regulation of Calcium/Calmodulin Dependent Transcription Factors", "https://www.researchgate.net/publication/323654822_The_Amino-Terminal_Domain_of_GRK5_Inhibits_Cardiac_Hypertrophy_through_the_Regulation_of_Calcium-Calmodulin_Dependent_Transcription_Factors", "In Calcium Signaling in Human Health and Diseases", "Editor: F. Moccia, eds. MDPI", 2018],
+  ["Jessica Gambardella, Bruno Trimarco, Guido Iaccarino, Gaetano Santulli", "New Insights in Cardiac Calcium Handling and Excitation-Contraction Coupling", "https://www.researchgate.net/publication/320062765_New_Insights_in_Cardiac_Calcium_Handling_and_Excitation-Contraction_Coupling", "In Heart Failure: From Research to Clinical Practice", "Editor: Shaidul Islam (Karolinska Institutet), eds. Springer-Nature", 2017],
+  ["M. Ciccarelli, D. Sorriento, E. Coscioni, G. Iaccarino, G. Santulli", "Adrenergic Receptors", "https://www.researchgate.net/publication/307856141_Adrenergic_Receptors", "In Endocrinology of the heart in health and disease", "Editors: JC. Schisler, CH. Lang, MS. Willis, eds. Elsevier", 2016],
+  ["Gaetano Santulli et al.", "Essential roles of intracellular calcium release channels in muscle, brain and metabolism", "http://benthamscience.com/journal/abstracts.php?journalID=cmp&articleID=131131", "In 50th Anniversary of Calcium Channel Research: Biomedical Perspectives", "eds. Bentham Science, Potomac, MD, USA", 2015],
+  ["Gaetano Santulli", "The adrenergic system in cardiovascular metabolism and aging", "http://link.springer.com/chapter/10.1007%2F978-3-319-13680-6_6", "In The cardiovascular adrenergic system", "Hardcover Book, Editor: A. Lymperopoulos, eds. Springer", 2018],
+  ["Gaetano Santulli", "Sympathetic Nervous System Signaling in Heart Failure and Cardiac Aging", "http://link.springer.com/chapter/10.1007%2F978-3-319-15961-4_5", "In Pathophysiology and Pharmacotherapy of Cardiovascular Disease", "Editor: G. Jagadeesh, eds. Springer", 2015]
 ];
 
-// Sort and rendering unchanged…
+/* ---------------------------
+   Render books
+--------------------------- */
+function renderBooks() {
+  const list = document.getElementById('books-list');
+  books.forEach(b => {
+    const authors = b[0].replace(/Gaetano Santulli/g, '<u>Gaetano Santulli</u>');
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <strong class="book-title">${b[1]}</strong><br>
+      <em>${authors}</em><br>
+      <strong class="publisher">${b[2]}</strong>, ${b[3]}<br>
+      ISBN: ${b[4]}
+    `;
+    list.appendChild(li);
+  });
+}
+
+/* ---------------------------
+   Render chapters
+--------------------------- */
+function renderChapters() {
+  const list = document.getElementById('chapters-list');
+  chapters.forEach(c => {
+    const authors = c[0].replace(/Gaetano Santulli/g, '<u>Gaetano Santulli</u>');
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <strong class="book-title"><a href="${c[2]}" target="_blank">${c[1]}</a></strong><br>
+      <em>${authors}</em><br>
+      ${c[3]}. ${c[4]}. ${c[5]}
+    `;
+    list.appendChild(li);
+  });
+}
+
+renderBooks();
+renderChapters();
 </script>
 
 </body>
