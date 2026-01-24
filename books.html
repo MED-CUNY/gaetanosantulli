@@ -101,12 +101,15 @@ nav a:hover {
   position: relative;
 }
 
-/* Hide hero image on tablets and mobile but keep title */
+/* Hide hero image and title on tablets and mobile */
 @media (max-width: 1024px) {
   .hero {
     background: none;
     height: auto;
     padding: 20px 0;
+  }
+  .hero h1 {
+    display: none;
   }
 }
 
