@@ -14,12 +14,12 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  background-color: #000000;
-  color: #eaeaea;
+  background-color: #0B0B0B; /* background */
+  color: #B8BDC7;            /* authors */
 }
 
 /* -------------------------
-   Navigation bar (IDENTICAL to About)
+   Navigation bar (UNCHANGED)
 ------------------------- */
 nav {
   background-color: #00755E;
@@ -123,7 +123,7 @@ nav a:hover {
 }
 
 .content h1 {
-  color: #ffffff;
+  color: #F5F5F5; /* main title */
   margin-bottom: 20px;
   text-align: center;
 }
@@ -146,27 +146,39 @@ nav a:hover {
   transform: scale(1.02);
 }
 
-.content strong.book-title {
-  color: #36d1dc;
-}
-
-.content strong.publisher {
-  color: #00755E;
-}
-
-.content u {
-  text-decoration: underline;
-}
-
 /* -------------------------
-   Footer
+   Books & Chapters Styling
 ------------------------- */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #00755E;
-  color: #e6fff8;
-  font-size: 14px;
+strong.book-title {
+  color: #F5F5F5; /* book title main list */
+  transition: color 0.3s;
+}
+
+strong.book-title:hover {
+  color: #8EC9FF; /* book title hover */
+}
+
+/* Chapter titles */
+ul#chapters-list strong.book-title {
+  color: #4DD0E1; /* chapter title */
+  transition: color 0.3s;
+}
+
+ul#chapters-list strong.book-title:hover {
+  color: #81D8F7; /* chapter title hover */
+}
+
+/* Publisher */
+strong.publisher {
+  color: #6FCF97; /* publisher */
+}
+
+em {
+  color: #B8BDC7; /* authors */
+}
+
+u {
+  text-decoration: underline;
 }
 </style>
 </head>
