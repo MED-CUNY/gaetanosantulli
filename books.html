@@ -35,8 +35,9 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center; /* vertical centering */
+  /* removed flex-wrap to prevent extra height */
 }
 
 nav li {
@@ -48,7 +49,7 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
-  line-height: 1; /* fix thickness */
+  line-height: 1; /* ensures no extra height */
 }
 
 nav a:hover {
