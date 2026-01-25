@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications – Prof. Gaetano Santulli</title>
 
 <style>
@@ -13,12 +14,12 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  background-color: #0B0B0B; /* near-black charcoal */
-  color: #B8BDC7;            /* authors gray */
+  background-color: #0B0B0B;
+  color: #B8BDC7;
 }
 
 /* -------------------------
-   Navigation bar (UNCHANGED)
+   Navigation bar (IDENTICAL TO BOOKS PAGE)
 ------------------------- */
 nav {
   background-color: #00755E;
@@ -47,14 +48,13 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
-  transition: color 0.3s ease;
 }
 
 nav a:hover {
   color: #d0f0e8;
 }
 
-/* Hamburger menu */
+/* Hamburger */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -81,7 +81,6 @@ nav a:hover {
   }
 }
 
-/* Tablets */
 @media (min-width: 601px) and (max-width: 1024px) {
   nav a {
     font-size: 16px;
@@ -99,20 +98,13 @@ nav a:hover {
 }
 
 .content h1 {
-  color: #F5F5F5; /* title off-white */
+  color: #F5F5F5;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.content p.intro {
-  color: #B8BDC7;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
 /* -------------------------
-   PubMed list styling (cards)
+   PubMed list styling
 ------------------------- */
 ul.pub-list {
   list-style: none;
@@ -134,34 +126,30 @@ ul.pub-list li:hover {
   box-shadow: 0 5px 12px rgba(255,255,255,0.15);
 }
 
-/* Journal */
 strong.journal {
-  color: #6FCF97; /* emerald journal */
+  color: #6FCF97;
 }
 
-/* Links: title + DOI */
 a {
-  color: #F5F5F5; /* title default */
+  color: #F5F5F5;
   text-decoration: none;
-  transition: color 0.3s;
 }
 
 a:hover {
-  color: #8EC9FF; /* title hover */
+  color: #8EC9FF;
   text-decoration: underline;
 }
 
-/* DOI links specifically */
 ul.pub-list li a[href^="https://doi.org"] {
-  color: #4DD0E1; /* DOI cyan */
+  color: #4DD0E1;
 }
 
 ul.pub-list li a[href^="https://doi.org"]:hover {
-  color: #7FE9FF; /* DOI hover */
+  color: #7FE9FF;
 }
 
 /* -------------------------
-   Page visit counter
+   Counter
 ------------------------- */
 .page-counter {
   margin-top: 50px;
@@ -178,10 +166,10 @@ ul.pub-list li a[href^="https://doi.org"]:hover {
    Footer
 ------------------------- */
 footer {
-  text-align: center;
-  padding: 20px;
   background-color: #00755E;
   color: #e6fff8;
+  text-align: center;
+  padding: 20px;
   margin-top: 60px;
   font-size: 14px;
 }
@@ -190,7 +178,7 @@ footer {
 
 <body>
 
-<!-- Navigation Bar -->
+<!-- Navigation -->
 <nav>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <ul id="nav-menu">
@@ -206,7 +194,6 @@ footer {
   </ul>
 </nav>
 
-<!-- Page Content -->
 <div class="content">
   <h1>Clinical Publications</h1>
 
@@ -220,28 +207,21 @@ footer {
 </div>
 
 <script>
-/* Mobile menu toggle */
 function toggleMenu() {
   document.getElementById('nav-menu').classList.toggle('active');
 }
 
-/* ---------------------------
-   Page visit counter
---------------------------- */
+/* Counter */
 let count = localStorage.getItem("pubPageCounter") || 5400;
 count++;
 localStorage.setItem("pubPageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* ---------------------------
-   PubMed query
---------------------------- */
+/* PubMed query */
 const query =
 "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
-/* ---------------------------
-   Journal replacements
---------------------------- */
+/* FULL journal replacements — UNTOUCHED */
 const replacements = {
  "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
  "ISCIENCE":"iSCIENCE",
@@ -269,9 +249,7 @@ const replacements = {
  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
 };
 
-/* ---------------------------
-   Fetch PubMed and display
---------------------------- */
+/* Fetch PubMed */
 async function fetchPubMed() {
   try {
     const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
