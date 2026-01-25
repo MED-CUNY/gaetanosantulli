@@ -112,6 +112,12 @@ nav a:hover {
   color: #F5F5F5;
 }
 
+.content h2 {
+  margin-top: 40px;
+  margin-bottom: 25px;
+  color: #F5F5F5;
+}
+
 .content p {
   margin-bottom: 20px;
 }
@@ -156,6 +162,43 @@ strong.journal {
 
 u {
   text-decoration: underline;
+}
+
+/* -------------------------
+   Recently Accepted Publications
+------------------------- */
+.recent-box {
+  margin: 40px 0 60px 0;
+  padding: 30px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(111,207,151,0.12), rgba(77,208,225,0.12));
+  box-shadow: 0 0 25px rgba(111,207,151,0.25);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.recent-box h2 {
+  text-align: center;
+  font-size: 26px;
+  background: linear-gradient(90deg, #6FCF97, #4DD0E1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear;
+}
+
+.recent-box li {
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.35);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
 }
 
 /* -------------------------
@@ -206,6 +249,36 @@ footer {
 
 <div class="content">
   <h1>Publications</h1>
+
+  <div class="recent-box" id="recent-box">
+    <h2>Recently Accepted Publications</h2>
+    <ul id="recent-list">
+
+      <li data-title="SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF">
+        <strong>SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF.</strong><br>
+        <em>Pasquale Mone, Marco Ferrone, Francesco Spione, Dimitris Christodoulakis, Francesco Melillo, Antonio Rainone, Domenico Ponticelli, Tullio Tesorio, Marco Di Mauro, Anna Marro, Gaetano Macina, Maria Morgante, Germano Guerra, <u>Gaetano Santulli</u></em><br>
+        <strong class="journal">CARDIOVASCULAR RESEARCH</strong>. 2026. <em>In press.</em>
+      </li>
+
+      <li data-title="TimeVault turns vault particles into molecular memory of transcriptional states">
+        <strong>TimeVault turns vault particles into molecular memory of transcriptional states: how to decode the cellular black box.</strong><br>
+        <strong class="journal">CELL CYCLE</strong>. 2026. <em>In press.</em>
+      </li>
+
+      <li data-title="Autonomic neurotransmission in cardiovascular regulation and pathophysiology">
+        <strong>Autonomic neurotransmission in cardiovascular regulation and pathophysiology.</strong><br>
+        <em>Fahimeh Varzideh, Stanislovas S. Jankauskas, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
+        <strong class="journal">FRONTIERS IN NEUROSCIENCE</strong>. 2026. <em>In press.</em>
+      </li>
+
+      <li data-title="Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist">
+        <strong>Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist for obesity and type 2 diabetes.</strong><br>
+        <em>Urna Kansakar, Stanislovas S. Jankauskas, Shivangi Pande, Pasquale Mone, Fahimeh Varzideh, <u>Gaetano Santulli</u></em><br>
+        <strong class="journal">INTERNATIONAL JOURNAL OF MOLECULAR SCIENCES</strong>. 2026. <em>In press.</em>
+      </li>
+
+    </ul>
+  </div>
 
   <div id="publications">
     <p>Loading publications...</p>
@@ -306,12 +379,27 @@ async function fetchPubMed() {
 
   html += "</ul>";
   document.getElementById("publications").innerHTML = html;
+  reconcileRecentWithPubMed();
+}
+
+function reconcileRecentWithPubMed() {
+  const pubmedTitles = [...document.querySelectorAll("#publications strong a")]
+    .map(x => x.textContent.toLowerCase());
+
+  document.querySelectorAll("#recent-list li").forEach(li => {
+    const key = li.dataset.title.toLowerCase();
+    if (pubmedTitles.some(t => t.includes(key))) li.remove();
+  });
+
+  if (!document.querySelector("#recent-list li")) {
+    document.getElementById("recent-box").style.display = "none";
+  }
 }
 
 fetchPubMed();
 </script>
 
-   <script data-goatcounter="https://gaetanosantulli.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://gaetanosantulli.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
