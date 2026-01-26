@@ -18,7 +18,7 @@
 
 <style>
 /* -------------------------
-   Reset & base styling
+   Reset & Base Styling
 ------------------------- */
 body {
   font-family: Arial, sans-serif;
@@ -123,8 +123,28 @@ nav a:hover {
   margin-bottom: 20px;
 }
 
+/* Links */
+.content a {
+  color: #F5F5F5;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.content a:hover {
+  color: #8EC9FF;
+  text-decoration: underline;
+}
+
+.content li a[href^="https://doi.org"] {
+  color: #4DD0E1;
+}
+
+.content li a[href^="https://doi.org"]:hover {
+  color: #7FE9FF;
+}
+
 /* -------------------------
-   Publications list styling
+   PubMed list styling with hover
 ------------------------- */
 ul.pub-list {
   list-style: none;
@@ -157,24 +177,6 @@ u {
   text-decoration: underline;
 }
 
-.content a {
-  color: #F5F5F5;
-  text-decoration: none;
-}
-
-.content a:hover {
-  color: #8EC9FF;
-  text-decoration: underline;
-}
-
-ul.pub-list li a[href^="https://doi.org"] {
-  color: #4DD0E1;
-}
-
-ul.pub-list li a[href^="https://doi.org"]:hover {
-  color: #7FE9FF;
-}
-
 /* -------------------------
    Recently Accepted Publications
 ------------------------- */
@@ -200,6 +202,18 @@ ul.pub-list li a[href^="https://doi.org"]:hover {
   padding: 18px;
   border-radius: 14px;
   background: rgba(0,0,0,0.35);
+}
+
+/* -------------------------
+   Cover image animation
+------------------------- */
+.cover-image {
+  text-align: center;
+  margin: 50px 0;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 0.2s;
 }
 
 /* -------------------------
@@ -268,36 +282,37 @@ footer {
   <div class="recent-box" id="recent-box">
     <h2>Recently Accepted Papers</h2>
     <ul id="recent-list">
-
       <li data-title="SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF">
         <strong>SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF.</strong><br>
         <em>Pasquale Mone, Marco Ferrone, Francesco Spione, Dimitris Christodoulakis, Francesco Melillo, Antonio Rainone, Domenico Ponticelli, Tullio Tesorio, Marco Di Mauro, Anna Marro, Gaetano Macina, Maria Morgante, Germano Guerra, <u>Gaetano Santulli</u></em><br>
         <strong class="journal">CARDIOVASCULAR RESEARCH</strong>. 2026. <em>In press.</em>
       </li>
-
       <li data-title="TimeVault turns vault particles into molecular memory of transcriptional states">
         <strong>TimeVault turns vault particles into molecular memory of transcriptional states: how to decode the cellular black box.</strong><br>
         <strong class="journal">CELL CYCLE</strong>. 2026. <em>In press.</em>
       </li>
-
       <li data-title="Autonomic neurotransmission in cardiovascular regulation and pathophysiology">
         <strong>Autonomic neurotransmission in cardiovascular regulation and pathophysiology.</strong><br>
         <em>Fahimeh Varzideh, Stanislovas S. Jankauskas, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
         <strong class="journal">FRONTIERS IN NEUROSCIENCE</strong>. 2026. <em>In press.</em>
       </li>
-
       <li data-title="Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist">
         <strong>Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist for obesity and type 2 diabetes.</strong><br>
         <em>Urna Kansakar, Stanislovas S. Jankauskas, Shivangi Pande, Pasquale Mone, Fahimeh Varzideh, <u>Gaetano Santulli</u></em><br>
         <strong class="journal">INTERNATIONAL JOURNAL OF MOLECULAR SCIENCES</strong>. 2026. <em>In press.</em>
       </li>
-
     </ul>
   </div>
 
-  <!-- PubMed Publications -->
+  <!-- PubMed publications -->
   <div id="publications">
     <p>Loading publications...</p>
+  </div>
+
+  <!-- Cover image -->
+  <div class="cover-image">
+    <h2>Covers of Journals where the Santulli Lab published</h2>
+    <img src="covers.png" alt="Covers of Journals where the Santulli Lab published" style="max-width:100%; height:auto;">
   </div>
 
   <!-- Page counter -->
@@ -315,17 +330,16 @@ function toggleMenu() {
   document.getElementById('nav-menu').classList.toggle('active');
 }
 
-/* Page counter */
+/* Counter */
 let count = localStorage.getItem("pageCounter") || 5400;
 count++;
 localStorage.setItem("pageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* PubMed query */
+/* PubMed Fetch */
 const query =
 "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
-/* Full journal replacements */
 const replacements = {
  "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
  "ISCIENCE":"iSCIENCE",
@@ -353,7 +367,6 @@ const replacements = {
  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
 };
 
-/* Fetch PubMed and display with animation + hover effect */
 async function fetchPubMed() {
   try {
     const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
@@ -390,7 +403,6 @@ async function fetchPubMed() {
       });
     }
 
-    // Newest at top, oldest at bottom; numbering reversed
     let html = "<ul class='pub-list'>";
     let pubNumber = articles.length;
     articles.forEach((art, index) => {
@@ -414,24 +426,19 @@ async function fetchPubMed() {
   }
 }
 
-/* Hide recent papers if already in PubMed */
 function reconcileRecentWithPubMed() {
   const pubmedTitles = [...document.querySelectorAll("#publications strong a")]
     .map(x => x.textContent.toLowerCase());
 
   document.querySelectorAll("#recent-list li").forEach(li => {
     const key = li.dataset.title.toLowerCase();
-    if (pubmedTitles.some(t => t.includes(key))) li.remove();
+    if (pubmedTitles.includes(key)) {
+      li.style.display = "none";
+    }
   });
-
-  if (!document.querySelector("#recent-list li")) {
-    document.getElementById("recent-box").style.display = "none";
-  }
 }
 
 fetchPubMed();
 </script>
-
-<script data-goatcounter="https://gaetanosantulli.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
