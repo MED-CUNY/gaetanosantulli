@@ -17,6 +17,9 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <style>
+/* =========================
+   BASE
+========================= */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -26,7 +29,9 @@ body {
   color: #B8BDC7;
 }
 
-/* Navigation */
+/* =========================
+   NAVIGATION
+========================= */
 nav {
   background-color: #00755E;
   padding: 12px 24px;
@@ -51,7 +56,9 @@ nav a:hover { color: #d0f0e8; }
 
 @media (min-width: 601px) and (max-width: 1024px) { nav a { font-size: 16px; } }
 
-/* Page content */
+/* =========================
+   CONTENT
+========================= */
 .content {
   max-width: 1000px;
   margin: 60px auto;
@@ -64,59 +71,95 @@ nav a:hover { color: #d0f0e8; }
 .content a:hover { color: #8EC9FF; text-decoration: underline; }
 .content li a[href^="https://doi.org"] { color: #4DD0E1; }
 .content li a[href^="https://doi.org"]:hover { color: #7FE9FF; }
-
 .content ul { list-style: none; padding-left: 0; }
 
-/* Hover animation: EXACT match with clinical publications page */
+/* =========================
+   HOVER CARDS (APPLIED FROM BOOKS PAGE)
+========================= */
 .content li {
+  position: relative;
   margin-bottom: 22px;
-  padding: 12px;
+  padding: 16px 18px 16px 22px;
   background-color: #111111;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(255,255,255,0.08);
-  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+  transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
 }
-.content li:hover {
-  transform: scale(1.02);
-  background-color: #1a1a1a;
-  box-shadow: 0 5px 12px rgba(255,255,255,0.15);
+
+.content li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 4px;
+  background: linear-gradient(180deg, #4DD0E1, #6FCF97);
+  border-radius: 4px;
+  opacity: 0;
+  transform: scaleY(0.3);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
+.content li:hover,
+.content li:focus-within {
+  transform: scale(1.02);
+  background-color: #1a1a1a;
+  box-shadow: 0 6px 14px rgba(255,255,255,0.16);
+}
+
+.content li:hover::before,
+.content li:focus-within::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* =========================
+   RECENT BOX STYLE UPDATE
+========================= */
+.recent-box li {
+  position: relative;
+  padding: 16px 18px 16px 22px;
+  background-color: #111111;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(255,255,255,0.08);
+  transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recent-box li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 4px;
+  background: linear-gradient(180deg, #4DD0E1, #6FCF97);
+  border-radius: 4px;
+  opacity: 0;
+  transform: scaleY(0.3);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.recent-box li:hover,
+.recent-box li:focus-within {
+  transform: scale(1.02);
+  background-color: #1a1a1a;
+  box-shadow: 0 6px 14px rgba(255,255,255,0.16);
+}
+
+.recent-box li:hover::before,
+.recent-box li:focus-within::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* =========================
+   OTHER ELEMENTS
+========================= */
 strong.journal { color: #6FCF97; }
 u { text-decoration: underline; }
 
-/* Recent box */
-.recent-box {
-  margin: 40px 0 60px 0;
-  padding: 30px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(111,207,151,0.12), rgba(77,208,225,0.12));
-  box-shadow: 0 0 25px rgba(111,207,151,0.25);
-  animation: fadeInUp 1s ease-out forwards;
-}
-.recent-box h2 {
-  text-align: center;
-  font-size: 26px;
-  background: linear-gradient(90deg, #6FCF97, #4DD0E1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s infinite linear;
-}
-.recent-box li {
-  padding: 18px;
-  border-radius: 14px;
-  background: rgba(0,0,0,0.35);
-  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
-}
-.recent-box li:hover {
-  transform: scale(1.02);
-  background-color: #1a1a1a;
-  box-shadow: 0 5px 12px rgba(255,255,255,0.15);
-}
-
-/* Cover box */
 .cover-box { text-align: center; margin: 50px 0; opacity: 0; transform: translateY(25px); animation: fadeInUp 1s ease-out forwards; animation-delay: 0.2s; }
 
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
@@ -210,9 +253,6 @@ Page Visits: <span id="counter">0</span>
 <script>
 function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
 
-
-
-  
 /* Counter */
 let count = localStorage.getItem("pubPageCounter") || 5400;
 count++;
