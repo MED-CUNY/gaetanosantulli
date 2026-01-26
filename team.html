@@ -176,6 +176,28 @@ h1 {
   color: #d0d0d0;
 }
 
+/* H-index pulsing animation */
+@keyframes pulse {
+  0% { transform: scale(1); text-shadow: 0 0 0 #36d1dc; }
+  50% { transform: scale(1.1); text-shadow: 0 0 8px #36d1dc, 0 0 12px #36d1dc; }
+  100% { transform: scale(1); text-shadow: 0 0 0 #36d1dc; }
+}
+
+.hindex-link {
+  color: #36d1dc;
+  text-decoration: none;
+  display: inline-block;
+  animation: pulse 2s infinite ease-in-out;
+  transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.hindex-link:hover {
+  transform: scale(1.3);
+  text-shadow: 0 0 12px #36f0e0, 0 0 20px #36f0e0;
+  color: #a0f0e0;
+  animation-play-state: paused; /* pause pulsing on hover */
+}
+
 /* -------------------------
    Footer
 ------------------------- */
@@ -254,6 +276,7 @@ const pi = {
   name: "Prof. Gaetano Santulli",
   role1: "Full Professor of Medicine (Cardiology)",
   role2: "Principal Investigator",
+  hIndex: 106,
   photo: "santulli.jpg"
 };
 
@@ -263,7 +286,8 @@ piRow.innerHTML = `
     <img src="${pi.photo}" alt="${pi.name}" style="width:140px;height:140px;border-radius:6px;margin-bottom:12px;">
     <div class="member-name">${pi.name}</div>
     <div class="member-role">${pi.role1}</div>
-    <<div class="member-role">H-index: <a href="https://scholar.google.com/citations?user=IX4IYaEAAAAJ&hl=en" target="_blank" style="color:#36d1dc;text-decoration:none;">106</a></div>
+    <div class="member-role">${pi.role2}</div>
+    <div class="member-role">H-index: <a href="https://scholar.google.com/citations?user=IX4IYaEAAAAJ&hl=en" target="_blank" class="hindex-link">${pi.hIndex}</a></div>
   </div>
 `;
 
