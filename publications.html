@@ -18,7 +18,7 @@
 
 <style>
 /* -------------------------
-   Reset & Base Styling
+   Reset & base styling
 ------------------------- */
 body {
   font-family: Arial, sans-serif;
@@ -30,7 +30,7 @@ body {
 }
 
 /* -------------------------
-   Navigation bar
+   Navigation bar (IDENTICAL TO BOOKS PAGE)
 ------------------------- */
 nav {
   background-color: #00755E;
@@ -123,7 +123,9 @@ nav a:hover {
   margin-bottom: 20px;
 }
 
-/* Links */
+/* -------------------------
+   Links
+------------------------- */
 .content a {
   color: #F5F5F5;
   text-decoration: none;
@@ -144,14 +146,14 @@ nav a:hover {
 }
 
 /* -------------------------
-   PubMed list styling with hover
+   Publications & hover effect
 ------------------------- */
-ul.pub-list {
+.content ul {
   list-style: none;
   padding-left: 0;
 }
 
-ul.pub-list li {
+.content li {
   margin-bottom: 22px;
   padding: 12px;
   background-color: #111111;
@@ -163,7 +165,7 @@ ul.pub-list li {
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
-ul.pub-list li:hover {
+.content li:hover {
   transform: scale(1.02);
   background-color: #1a1a1a;
   box-shadow: 0 5px 12px rgba(255,255,255,0.15);
@@ -205,9 +207,9 @@ u {
 }
 
 /* -------------------------
-   Cover image animation
+   Cover image
 ------------------------- */
-.cover-image {
+.cover-box {
   text-align: center;
   margin: 50px 0;
   opacity: 0;
@@ -304,15 +306,15 @@ footer {
     </ul>
   </div>
 
-  <!-- PubMed publications -->
-  <div id="publications">
-    <p>Loading publications...</p>
+  <!-- Cover image -->
+  <div class="cover-box">
+    <h2>Selection of Covers of our Best Papers:</h2>
+    <img src="covers.png" alt="Covers of Journals where the Santulli Lab published" style="max-width:100%; height:auto;">
   </div>
 
-  <!-- Cover image -->
-  <div class="cover-image">
-    <h2>Selection of Covers of our Best Papers xxx</h2>
-    <img src="covers.png" alt="Covers of Journals where the Santulli Lab published" style="max-width:100%; height:auto;">
+  <!-- Publications from PubMed -->
+  <div id="publications">
+    <p>Loading publications...</p>
   </div>
 
   <!-- Page counter -->
@@ -331,12 +333,12 @@ function toggleMenu() {
 }
 
 /* Counter */
-let count = localStorage.getItem("pageCounter") || 5400;
+let count = localStorage.getItem("pubPageCounter") || 5400;
 count++;
-localStorage.setItem("pageCounter", count);
+localStorage.setItem("pubPageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* PubMed Fetch */
+/* PubMed */
 const query =
 "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
@@ -368,71 +370,66 @@ const replacements = {
 };
 
 async function fetchPubMed() {
-  try {
-    const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
-    const s = await (await fetch(esearch)).json();
-    const webenv = s.esearchresult.webenv;
-    const key = s.esearchresult.querykey;
-    const total = parseInt(s.esearchresult.count);
+  const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
+  const s = await (await fetch(esearch)).json();
 
-    let articles = [];
-    const step = 200;
+  const webenv = s.esearchresult.webenv;
+  const key = s.esearchresult.querykey;
+  const total = parseInt(s.esearchresult.count);
 
-    for (let i = 0; i < total; i += step) {
-      const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
-      const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
+  let articles = [];
+  const step = 200;
 
-      xml.querySelectorAll("PubmedArticle").forEach(a => {
-        const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
-        if (journalRaw.includes("RESEARCH SQUARE")) return;
+  for (let i = 0; i < total; i += step) {
+    const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
+    const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
 
-        const journal = replacements[journalRaw] || journalRaw;
-        const pmid = a.querySelector("PMID")?.textContent;
-        const title = a.querySelector("ArticleTitle")?.textContent || "";
-        const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
+    xml.querySelectorAll("PubmedArticle").forEach(a => {
+      const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
+      if (journalRaw.includes("RESEARCH SQUARE")) return;
 
-        const authors = [...a.querySelectorAll("Author")]
-          .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
-          .join(", ")
-          .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
+      const journal = replacements[journalRaw] || journalRaw;
+      const pmid = a.querySelector("PMID")?.textContent;
+      const title = a.querySelector("ArticleTitle")?.textContent || "";
+      const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
 
-        const doi = [...a.querySelectorAll("ArticleId")]
-          .find(x => x.getAttribute("IdType") === "doi")?.textContent;
+      const authors = [...a.querySelectorAll("Author")]
+        .map(x => `${x.querySelector("ForeName")?.textContent || ""} ${x.querySelector("LastName")?.textContent || ""}`)
+        .join(", ")
+        .replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
 
-        articles.push({pmid, title, authors, journal, year, doi});
-      });
-    }
+      const doi = [...a.querySelectorAll("ArticleId")]
+        .find(x => x.getAttribute("IdType") === "doi")?.textContent;
 
-    let html = "<ul class='pub-list'>";
-    let pubNumber = articles.length;
-    articles.forEach((art, index) => {
-      html += `
-        <li style="animation-delay:${index*0.03}s">
-          <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
-          <em>${art.authors}</em><br>
-          <strong class="journal">${art.journal}</strong>. ${art.year}.
-          ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
-        </li>`;
-      pubNumber--;
+      articles.push({pmid, title, authors, journal, year, doi});
     });
-    html += "</ul>";
-
-    document.getElementById("publications").innerHTML = html;
-    reconcileRecentWithPubMed();
-
-  } catch(e) {
-    console.error(e);
-    document.getElementById("publications").innerHTML = "<p>Failed to load publications.</p>";
   }
+
+  // Reverse so oldest = bottom, newest = top
+  let html = "<ul>";
+  let pubNumber = articles.length; 
+  articles.forEach((art, index) => {
+    html += `
+      <li style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
+        <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
+        <em>${art.authors}</em><br>
+        <strong class="journal">${art.journal}</strong>. ${art.year}.
+        ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
+      </li>`;
+    pubNumber--;
+  });
+  html += "</ul>";
+
+  document.getElementById("publications").innerHTML = html;
+  reconcileRecentWithPubMed();
 }
 
 function reconcileRecentWithPubMed() {
   const pubmedTitles = [...document.querySelectorAll("#publications strong a")]
-    .map(x => x.textContent.toLowerCase());
+    .map(x => x.textContent.trim());
 
   document.querySelectorAll("#recent-list li").forEach(li => {
-    const key = li.dataset.title.toLowerCase();
-    if (pubmedTitles.includes(key)) {
+    if (pubmedTitles.includes(li.dataset.title)) {
       li.style.display = "none";
     }
   });
