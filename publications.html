@@ -150,8 +150,6 @@ nav a:hover {
 .content li {
   margin-bottom: 22px;
   transition: transform 0.2s;
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .content li:hover {
@@ -175,6 +173,7 @@ u {
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(111,207,151,0.12), rgba(77,208,225,0.12));
   box-shadow: 0 0 25px rgba(111,207,151,0.25);
+  animation: fadeInUp 1s ease-out forwards;
 }
 
 .recent-box h2 {
@@ -190,8 +189,6 @@ u {
   padding: 18px;
   border-radius: 14px;
   background: rgba(0,0,0,0.35);
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 @keyframes fadeInUp {
@@ -352,8 +349,7 @@ async function fetchPubMed() {
   const key = s.esearchresult.querykey;
   const total = parseInt(s.esearchresult.count);
 
-  let html = "<ul>";
-  let pubNumber = total;   // newest = highest number
+  let articles = [];
   const step = 200;
 
   for (let i = 0; i < total; i += step) {
@@ -377,19 +373,25 @@ async function fetchPubMed() {
       const doi = [...a.querySelectorAll("ArticleId")]
         .find(x => x.getAttribute("IdType") === "doi")?.textContent;
 
-      html += `
-      <li style="animation-delay:${(total-pubNumber)*0.02}s">
-        <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a></strong><br>
-        <em>${authors}</em><br>
-        <strong class="journal">${journal}</strong>. ${year}.
-        ${doi ? `<br>DOI: <a href="https://doi.org/${doi}" target="_blank">${doi}</a>` : ""}
-      </li>`;
-
-      pubNumber--;
+      articles.push({pmid, title, authors, journal, year, doi});
     });
   }
 
+  // Articles already newest → oldest (top = newest)
+  let html = "<ul>";
+  let pubNumber = articles.length; // newest = highest number
+  articles.forEach((art, index) => {
+    html += `
+      <li style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
+        <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
+        <em>${art.authors}</em><br>
+        <strong class="journal">${art.journal}</strong>. ${art.year}.
+        ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
+      </li>`;
+    pubNumber--;
+  });
   html += "</ul>";
+
   document.getElementById("publications").innerHTML = html;
   reconcileRecentWithPubMed();
 }
