@@ -3,26 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- SEO -->
-<title>Awards & Honors – Prof. Gaetano Santulli | Cardiovascular & Metabolic Research</title>
-<meta name="description" content="Prof. Gaetano Santulli's awards, honors, professional services, and patents in cardiovascular and metabolic research. Explore his achievements and contributions.">
-<link rel="canonical" href="https://med-cuny.github.io/gaetanosantulli/awards-honors.html">
-
+<title>Awards & Honors – Prof. Gaetano Santulli</title>
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-<!-- Structured Data -->
+<!-- Google Structured Data for SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Prof. Gaetano Santulli",
   "jobTitle": "Professor of Cardiology",
-  "affiliation": "Santulli Lab",
-  "honorificPrefix": "Prof.",
-  "url": "https://med-cuny.github.io/gaetanosantulli/awards-honors.html",
-  "knowsAbout": ["Cardiovascular Disease","Metabolic Disease","Calcium Signaling","Diabetes","Translational Medicine"],
+  "alumniOf": "Various Institutions",
   "award": [
     "2026: Elected Member of the American Society for Clinical Investigation (ASCI)",
     "2025: AHA Hypertension Award for Research Excellence",
@@ -52,6 +44,88 @@
     "2013: 'William Harvey' Award for Research in Cardiology (Italian Society of Cardiology)",
     "2013: American Heart Association (AHA) Postdoctoral Fellowship (High Score: 1.1)",
     "2011: Young Investigator Award, Veronesi Foundation for Cardiovascular Research"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Professional Service",
+      "description": "Grant reviewer for multiple Institutes and Associations including NIH, NSF, ERC, NYAS, Doris Duke Charitable Foundation, AHA (USA), AFM Telethon (France), Ministero della Salute, Fondazione PISA, Ministero dell’Istruzione dell’Università e della Ricerca (Italia), Israel Science Foundation, Austrian Science Fund, Icelandic Research Fund, Polish Research Fund, NIHR, ME Research, and Wellcome Trust (UK)"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "CSS (Cell Structure and Survival): 2019-present"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "HIRN (Human Islet Research Network) BCDS (Beta Cell Death and Survival): 2020-present"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "CCHF (Cardiac Contractility, Hypertrophy, and Failure): 2020-2021"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "MPPA (Integrative Myocardial Physiology/Pathophysiology A): 2021-present"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "HSDO (Human Studies of Diabetes and Obesity): 2022-present"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "EMNR (Endocrinology, Metabolism, Nutrition and Reproductive Sciences): 2022-present"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "CSME (Cell Signaling and Molecular Endocrinology): 2022-present"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "NIDDK's Small Business Endocrinology Metabolism and Reproduction: 2023-present"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "NHLBI’s SBIR/STTR Grants (R41/R42/R43/R44): 2024-present"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Study Section Membership",
+      "description": "CCHS (Clinical Integrative Cardiovascular and Hematological Sciences): 2025-present"
+    }
+  ],
+  "owns": [
+    {
+      "@type": "Patent",
+      "name": "SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION",
+      "identifier": "#C-00001503"
+    },
+    {
+      "@type": "Patent",
+      "name": "CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19",
+      "identifier": "C-00001482"
+    },
+    {
+      "@type": "Patent",
+      "name": "RETINOIC ACID RECEPTOR BETA2 AS A POTENTIAL TARGET FOR THE TREATMENT OF HEART FAILURE",
+      "identifier": "P-612682-US"
+    },
+    {
+      "@type": "Patent",
+      "name": "CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW-ONSET DIABETES IN COVID-19 AND LONG COVID",
+      "identifier": "C-00001500",
+      "applicationNumber": "18/424483",
+      "publicationNumber": "US-A1: 20240287608",
+      "internationalClasses": "C12Q1/6883"
+    }
   ]
 }
 </script>
@@ -87,11 +161,11 @@ nav ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center items */
+  justify-content: center;
 }
 
 nav li {
-  margin: 0 15px;
+  margin-right: 22px;
 }
 
 nav a {
@@ -106,7 +180,7 @@ nav a:hover {
   color: #d0f0e8;
 }
 
-/* Hamburger for mobile */
+/* Hamburger */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -130,6 +204,12 @@ nav a:hover {
   }
   .hamburger {
     display: block;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  nav a {
+    font-size: 16px;
   }
 }
 
@@ -169,7 +249,6 @@ nav a:hover {
 
 .content ul {
   padding-left: 20px;
-  text-align: left;
 }
 
 .content li {
@@ -278,28 +357,11 @@ footer {
 
   <h2>Patents</h2>
   <ul>
-    <li>
-      <strong class="title">SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION</strong><br>
-      <span class="meta">#C-00001503</span>
-    </li>
-
-    <li>
-      <strong class="title">CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19</strong><br>
-      <span class="meta">(C-00001482)</span>
-    </li>
-
-    <li>
-      <strong class="title">RETINOIC ACID RECEPTOR BETA2 AS A POTENTIAL TARGET FOR THE TREATMENT OF HEART FAILURE</strong><br>
-      <span class="meta">(P-612682-US)</span>
-    </li>
-
-    <li>
-      <strong class="title">CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW-ONSET DIABETES IN COVID-19 AND LONG COVID</strong><br>
-      <span class="meta">
-        (C-00001500)<br>
-        US-A1: 20240287608 &nbsp;|&nbsp; Application No.: 18/424483<br>
-        International Classes: C12Q1/6883
-      </span>
+    <li><strong class="title">SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION</strong><br><span class="meta">(#C-00001503)</span></li>
+    <li><strong class="title">CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19</strong><br><span class="meta">(C-00001482)</span></li>
+    <li><strong class="title">RETINOIC ACID RECEPTOR BETA2 AS A POTENTIAL TARGET FOR THE TREATMENT OF HEART FAILURE</strong><br><span class="meta">(P-612682-US)</span></li>
+    <li><strong class="title">CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW-ONSET DIABETES IN COVID-19 AND LONG COVID</strong><br>
+      <span class="meta">(C-00001500)<br>US-A1: 20240287608 &nbsp;|&nbsp; Application No.: 18/424483<br>International Classes: C12Q1/6883</span>
     </li>
   </ul>
 
@@ -317,3 +379,4 @@ function toggleMenu() {
 
 </body>
 </html>
+
