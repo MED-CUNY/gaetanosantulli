@@ -1,180 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-
+   <meta name="google-site-verification" content="fireegA2wn-R0UDPISA6TqvUxeJ6w0X0CX9I-o8AZmw" />
 <head>
-  <!-- Basic Meta -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>About - Prof. Gaetano Santulli</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+   
+<style>
+/* -------------------------
+   Reset & base styling
+------------------------- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #000000;
+  color: #eaeaea;
+}
 
-  <!-- Google Site Verification -->
-  <meta name="google-site-verification" content="fireegA2wn-R0UDPISA6TqvUxeJ6w0X0CX9I-o8AZmw">
+/* -------------------------
+   Navigation bar
+------------------------- */
+nav {
+  background-color: #00755E; /* Tropical Rain Forest */
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
 
-  <!-- SEO -->
-  <title>SANTULLI LAB | Cardiovascular and Metabolic Research - Prof. Gaetano Santulli, MD, PhD, FAHA</title>
-  <meta name="description" content="Learn about Prof. Gaetano Santulli, MD, PhD, FAHA, and his research in cardiovascular and metabolic diseases, heart failure, diabetes, aging, and translational medicine.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://yourdomain.edu/about.html">
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+nav li {
+  margin-right: 22px;
+}
 
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Gaetano Santulli",
-    "honorificPrefix": "Prof.",
-    "jobTitle": "Professor of Cardiology",
-    "affiliation": {
-      "@type": "Organization",
-      "name": "Santulli Lab"
-    },
-    "url": "https://yourdomain.edu",
-    "sameAs": [
-      "https://scholar.google.com",
-      "https://pubmed.ncbi.nlm.nih.gov"
-    ]
-  }
-  </script>
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
 
-  <!-- Styles -->
-  <style>
-    /* -------------------------
-       Reset & base styling
-    ------------------------- */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background-color: #000000;
-      color: #eaeaea;
-    }
+nav a:hover {
+  color: #d0f0e8; /* subtle mint hover */
+}
 
-    /* -------------------------
-       Navigation bar
-    ------------------------- */
-    nav {
-      background-color: #00755E;
-      padding: 12px 24px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
+/* -------------------------
+   Hero section
+------------------------- */
+.hero {
+  text-align: center;
+  margin-top: 50px;
+}
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-    }
+.hero img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(255,255,255,0.1);
+}
 
-    nav li {
-      margin-right: 22px;
-    }
+/* -------------------------
+   Page content
+------------------------- */
+.content {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 24px;
+  text-align: center;
+}
 
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      transition: color 0.3s ease;
-    }
+.content h1 {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
 
-    nav a:hover {
-      color: #d0f0e8;
-    }
+.content p {
+  color: #cccccc;
+  font-size: 16px;
+}
 
-    /* -------------------------
-       Hero section
-    ------------------------- */
-    .hero {
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    .hero img {
-      max-width: 80%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 6px 15px rgba(255,255,255,0.1);
-    }
-
-    /* -------------------------
-       Page content
-    ------------------------- */
-    .content {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 0 24px;
-      text-align: center;
-    }
-
-    .content h1 {
-      color: #ffffff;
-      margin-bottom: 20px;
-    }
-
-    .content p {
-      color: #cccccc;
-      font-size: 16px;
-    }
-
-    /* -------------------------
-       Footer
-    ------------------------- */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #00755E;
-      color: #e6fff8;
-      margin-top: 60px;
-      font-size: 14px;
-    }
-  </style>
+/* -------------------------
+   Footer
+------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  margin-top: 60px;
+  font-size: 14px;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- Navigation Bar -->
-  <nav>
-    <ul>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/team.html">Team</a></li>
-      <li><a href="/publications.html">Publications</a></li>
-      <li><a href="/areas-of-interest.html">Areas of Interests</a></li>
-      <li><a href="/funding.html">Funding</a></li>
-      <li><a href="/awards-honors.html">Awards &amp; Honors</a></li>
-      <li><a href="/books.html">Books</a></li>
-      <li><a href="/clinical-publications.html">Clinical Publications</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
-  </nav>
+<!-- Navigation Bar -->
+<nav>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="areas-of-interest.html">Areas of Interests</a></li>
+    <li><a href="funding.html">Funding</a></li>
+    <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li><a href="clinical-publications.html">Clinical Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- Hero Image -->
-  <div class="hero" role="img" aria-label="Santulli Lab cardiovascular and metabolic research">
-    <img src="hero.jpg" alt="Research environment of the Santulli Lab led by Prof. Gaetano Santulli">
-  </div>
+<!-- Hero Image -->
+<div class="hero">
+  <img src="hero.jpg" alt="Lab of Prof. Gaetano Santulli">
+</div>
 
-  <!-- Page Content -->
-  <div class="content">
-    <h1>About Prof. Gaetano Santulli and the Santulli Lab</h1>
-    <p>
-      This website provides information on research activities, team members,
-      funding, publications, clinical work, and academic contributions led by
-      Prof. Gaetano Santulli, MD, PhD, FAHA, with a focus on cardiovascular and
-      metabolic diseases, heart failure, diabetes, aging, and translational medicine.
-    </p>
-  </div>
+<!-- Page Content -->
+<div class="content">
+  <h1>Welcome to the Lab of Prof. Gaetano Santulli</h1>
+  <p>
+    This website provides information on research activities, team members,
+    funding, publications, clinical work, and academic contributions.
+  </p>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2026 Prof. Gaetano Santulli
-  </footer>
+<!-- Footer -->
+<footer>
+  &copy; 2026 Prof. Gaetano Santulli
+</footer>
 
 </body>
 </html>
