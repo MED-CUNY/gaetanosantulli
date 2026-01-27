@@ -115,6 +115,21 @@ nav a:hover {
 }
 
 /* -------------------------
+   Search Input
+------------------------- */
+#searchInput {
+  width: 100%;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background-color: #1a1a1a;
+  color: #F5F5F5;
+}
+#searchInput::placeholder { color: #888; }
+
+/* -------------------------
    PubMed list styling
 ------------------------- */
 ul.pub-list {
@@ -128,13 +143,25 @@ ul.pub-list li {
   background-color: #111111;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(255,255,255,0.08);
-  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s, opacity 0.3s, height 0.3s, margin 0.3s, padding 0.3s;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 ul.pub-list li:hover {
   transform: scale(1.02);
   background-color: #1a1a1a;
   box-shadow: 0 5px 12px rgba(255,255,255,0.15);
+}
+
+ul.pub-list li.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 strong.journal {
@@ -184,6 +211,14 @@ footer {
   margin-top: 60px;
   font-size: 14px;
 }
+
+/* -------------------------
+   Animations
+------------------------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 
@@ -208,6 +243,9 @@ footer {
 <div class="content">
   <h1>Clinical Publications</h1>
 
+  <!-- Search input -->
+  <input type="text" id="searchInput" placeholder="Search clinical publications..." oninput="filterPublications()">
+
   <div id="publications">
     <p>Loading clinical publications..</p>
   </div>
@@ -228,7 +266,24 @@ count++;
 localStorage.setItem("pubPageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* PubMed query */
+/* -------------------------
+   Filter function
+------------------------- */
+function filterPublications() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.pub-list li').forEach(li => {
+    const title = li.querySelector('strong a')?.textContent.toLowerCase() || "";
+    if(title.includes(query)) {
+      li.classList.remove('hidden');
+    } else {
+      li.classList.add('hidden');
+    }
+  });
+}
+
+/* -------------------------
+   PubMed query
+------------------------- */
 const query =
 "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
@@ -260,7 +315,9 @@ const replacements = {
  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
 };
 
-/* Fetch PubMed */
+/* -------------------------
+   Fetch PubMed
+------------------------- */
 async function fetchPubMed() {
   try {
     const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
@@ -276,7 +333,7 @@ async function fetchPubMed() {
       const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
       const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
 
-      xml.querySelectorAll("PubmedArticle").forEach(a => {
+      xml.querySelectorAll("PubmedArticle").forEach((a,index)=>{
         const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
         if (journalRaw.includes("RESEARCH SQUARE")) return;
 
@@ -294,7 +351,7 @@ async function fetchPubMed() {
           .find(x => x.getAttribute("IdType") === "doi")?.textContent;
 
         html += `
-        <li>
+        <li style="animation-delay:${index*0.03}s">
           <strong><a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank">${title}</a></strong><br>
           <em>${authors}</em><br>
           <strong class="journal">${journal}</strong>. ${year}.
@@ -313,8 +370,10 @@ async function fetchPubMed() {
 
 fetchPubMed();
 </script>
+
 <script data-goatcounter="https://gaetanosantulli.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
+
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
