@@ -357,7 +357,11 @@ function filterPublications() {
   });
 }
 
+// =========================
+// PUBMED FETCH & BADGE MAPPING
+// =========================
 const query = "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
+
 const replacements = {
  "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
  "ISCIENCE":"iSCIENCE",
@@ -385,9 +389,24 @@ const replacements = {
  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
 };
 
-// PMIDs for special badges
-const pmidHighHDL = "35968698"; // 2022 High HDL paper
-const pmidPrediabetes = "38752357"; // 2024 Prediabetes paper
+// Badge mapping
+const pmidBadges = {
+  "38752357": ["🏆 Journal Cover"],
+  "25133430": ["🎙️ Interview / Article Featured", "https://www.jci.org/posts/200", "🎙️ Featured in JCI Impact", "https://www.jci.org/this-month/2014/9"],
+  "32403217": ["🌟 High Citations (>800 citations)"],
+  "29843915": ["🌟 High Citations (>600 citations)"],
+  "24478758": ["🌟 High Citations (>370 citations)"],
+  "37775305": ["🏅 Editorial"],
+  "38135511": ["🏅 Editorial"],
+  "36478189": ["⭐ Recommended"],
+  "35703100": ["🏆 Journal Cover"],
+  "35042640": ["🏅 Editorial"],
+  "34389654": ["🏆 Journal Cover"],
+  "29593014": ["⭐ Recommended"],
+  "26217001": ["🏅 Editorial", "⭐ Recommended", "🌟 High Citations (>650 citations)"],
+  "25844899": ["🌟 High Citations", "🎙️ Article Featured in JCI Impact", "http://www.jci.org/impacts/2015/5"],
+  "35968698": ["🏆 Journal Cover", "🎙️ Interview / Article Featured", "https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/"]
+};
 
 async function fetchPubMed() {
   const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
@@ -398,57 +417,53 @@ async function fetchPubMed() {
   let articles = [];
   const step = 200;
 
-  for (let i=0; i<total; i+=step){
+  for (let i = 0; i < total; i += step) {
     const efetch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&query_key=${key}&WebEnv=${webenv}&retstart=${i}&retmax=${step}&retmode=xml`;
-    const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(),"text/xml");
-    xml.querySelectorAll("PubmedArticle").forEach(a=>{
-      const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase()||"";
-      if(journalRaw.includes("RESEARCH SQUARE")) return;
-      const journal = replacements[journalRaw]||journalRaw;
+    const xml = new DOMParser().parseFromString(await (await fetch(efetch)).text(), "text/xml");
+    xml.querySelectorAll("PubmedArticle").forEach(a => {
+      const journalRaw = a.querySelector("Journal > Title")?.textContent.toUpperCase() || "";
+      if (journalRaw.includes("RESEARCH SQUARE")) return;
+      const journal = replacements[journalRaw] || journalRaw;
       const pmid = a.querySelector("PMID")?.textContent;
-      const title = a.querySelector("ArticleTitle")?.textContent||"";
-      const year = a.querySelector("PubDate > Year")?.textContent||"n.d.";
-      const authors = [...a.querySelectorAll("Author")].map(x=>`${x.querySelector("ForeName")?.textContent||""} ${x.querySelector("LastName")?.textContent||""}`).join(", ").replace(/Gaetano Santulli/g,"<u>Gaetano Santulli</u>");
-      const doi = [...a.querySelectorAll("ArticleId")].find(x=>x.getAttribute("IdType")==="doi")?.textContent;
-      articles.push({pmid,title,authors,journal,year,doi});
+      const title = a.querySelector("ArticleTitle")?.textContent || "";
+      const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
+      const authors = [...a.querySelectorAll("Author")].map(x => `${x.querySelector("ForeName")?.textContent||""} ${x.querySelector("LastName")?.textContent||""}`).join(", ").replace(/Gaetano Santulli/g, "<u>Gaetano Santulli</u>");
+      const doi = [...a.querySelectorAll("ArticleId")].find(x => x.getAttribute("IdType") === "doi")?.textContent;
+      articles.push({ pmid, title, authors, journal, year, doi });
     });
   }
 
-  let html="<ul class='pub-list content'>";
-  let pubNumber=articles.length;
-  articles.forEach((art,index)=>{
-
-    const isHighHDLCover = (art.pmid === pmidHighHDL);
-    const isPrediabetesCover = (art.pmid === pmidPrediabetes);
-
-    html+=`<li data-title="${art.title}" style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
+  let html = "<ul class='pub-list content'>";
+  let pubNumber = articles.length;
+  articles.forEach((art, index) => {
+    html += `<li data-title="${art.title}" style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
       <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
       <em>${art.authors}</em><br>
       <strong class="journal">${art.journal}</strong>. ${art.year}.
-      ${art.doi?`<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>`:""}
-      
-      ${isHighHDLCover ? `
-        <div class="gold-note">
-          📰 Journal Cover • Interview to Dr. Santulli published in 
-          <em><a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank" rel="noopener noreferrer">Scientific American</a></em>
-        </div>
-      ` : ""}
+      ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}`;
 
-      ${isPrediabetesCover ? `
-        <div class="gold-note">
-          🏥 Journal Cover
-        </div>
-      ` : ""}
+    if (pmidBadges[art.pmid]) {
+      for (let i = 0; i < pmidBadges[art.pmid].length; i++) {
+        let text = pmidBadges[art.pmid][i];
+        let link = null;
+        if (i + 1 < pmidBadges[art.pmid].length && pmidBadges[art.pmid][i + 1].startsWith("http")) {
+          link = pmidBadges[art.pmid][i + 1];
+          i++;
+        }
+        html += `<div class="gold-note">${link ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${text}</a>` : text}</div>`;
+      }
+    }
 
-    </li>`;
+    html += `</li>`;
     pubNumber--;
   });
-  html+="</ul>";
-  document.getElementById("publications").innerHTML=html;
 
-  const pubmedTitles=[...document.querySelectorAll("#publications strong a")].map(x=>x.textContent.trim());
-  document.querySelectorAll("#recent-list li").forEach(li=>{
-    if(pubmedTitles.includes(li.dataset.title)) li.style.display="none";
+  html += "</ul>";
+  document.getElementById("publications").innerHTML = html;
+
+  const pubmedTitles = [...document.querySelectorAll("#publications strong a")].map(x => x.textContent.trim());
+  document.querySelectorAll("#recent-list li").forEach(li => {
+    if (pubmedTitles.includes(li.dataset.title)) li.style.display = "none";
   });
 }
 
