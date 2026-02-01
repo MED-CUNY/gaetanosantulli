@@ -518,11 +518,16 @@ async function fetchPubMed() {
   let html = "<ul class='pub-list content'>";
   let pubNumber = articles.length;
   articles.forEach((art, index) => {
-    html += `<li data-title="${art.title}" style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
-      <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
-      <em>${art.authors}</em><br>
-      <strong class="journal">${art.journal}</strong>. ${art.year}.
-      ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}`;
+html += `<li 
+    data-title="${art.title}" 
+    data-authors="${art.authors.replace(/"/g, '&quot;')}" 
+    data-journal="${art.journal.replace(/"/g, '&quot;')}" 
+    style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
+  <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
+  <em>${art.authors}</em><br>
+  <strong class="journal">${art.journal}</strong>. ${art.year}.
+  ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}`;
+
 
     if (pmidBadges[art.pmid]) {
       for (let i = 0; i < pmidBadges[art.pmid].length; i++) {
