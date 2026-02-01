@@ -185,6 +185,29 @@ u { text-decoration: underline; }
 @keyframes shimmer { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 
 /* =========================
+   GOLD ACHIEVEMENT NOTE
+========================= */
+.gold-note {
+  margin-top: 8px;
+  padding: 8px 12px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2b1a00;
+  background: linear-gradient(90deg, #FFD700, #FFB800, #FFD700);
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+  animation: goldPulse 2.5s infinite ease-in-out;
+}
+.gold-note em { font-style: italic; }
+
+@keyframes goldPulse {
+  0%   { transform: scale(1); box-shadow: 0 0 10px rgba(255,215,0,0.5); }
+  50%  { transform: scale(1.03); box-shadow: 0 0 18px rgba(255,215,0,0.9); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,215,0,0.5); }
+}
+
+/* =========================
    PAGE COUNTER
 ========================= */
 .page-counter {
@@ -261,7 +284,6 @@ footer {
 <div class="content">
 <h1>Publications</h1>
 
-<!-- Search Input -->
 <input type="text" id="searchInput" placeholder="Search Prof. Santulli's publications.." oninput="filterPublications()">
 
 <div class="recent-box" id="recent-box">
@@ -273,9 +295,9 @@ footer {
     <strong class="journal">CARDIOVASCULAR RESEARCH</strong>. 2026. <em>In press.</em>
   </li>
   <li data-title="Vitamin D in cardiovascular medicine: from molecular mechanisms to clinical">
-  <strong>Vitamin D in cardiovascular medicine: from molecular mechanisms to clinical translation.</strong><br>
-  <em>Fahimeh Varzideh, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
-  <strong class="journal">NUTRIENTS</strong>. 2026. <em>In press.</em>
+    <strong>Vitamin D in cardiovascular medicine: from molecular mechanisms to clinical translation.</strong><br>
+    <em>Fahimeh Varzideh, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
+    <strong class="journal">NUTRIENTS</strong>. 2026. <em>In press.</em>
   </li>
   <li data-title="TimeVault turns vault particles into molecular memory of transcriptional states">
     <strong>TimeVault turns vault particles into molecular memory of transcriptional states: how to decode the cellular black box.</strong><br>
@@ -316,30 +338,20 @@ Page Visits: <span id="counter">0</span>
 <script>
 function toggleMenu() { document.getElementById('nav-menu').classList.toggle('active'); }
 
-/* Counter */
 let count = localStorage.getItem("pubPageCounter") || 5400;
 count++;
 localStorage.setItem("pubPageCounter", count);
 document.getElementById("counter").textContent = count;
 
-/* =========================
-   FILTER FUNCTION
-========================= */
 function filterPublications() {
   const query = document.getElementById('searchInput').value.toLowerCase();
   document.querySelectorAll('.pub-list li').forEach(li => {
     const title = li.dataset.title.toLowerCase();
-    if(title.includes(query)) {
-      li.classList.remove('hidden');
-    } else {
-      li.classList.add('hidden');
-    }
+    if(title.includes(query)) li.classList.remove('hidden');
+    else li.classList.add('hidden');
   });
 }
 
-/* =========================
-   PubMed fetch
-========================= */
 const query = "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 const replacements = {
  "ECLINICALMEDICINE":"LANCET eCLINICALMEDICINE",
@@ -396,18 +408,27 @@ async function fetchPubMed() {
   let html="<ul class='pub-list content'>";
   let pubNumber=articles.length;
   articles.forEach((art,index)=>{
+    const isHypertensionCover =
+      art.year === "2022" &&
+      art.journal === "HYPERTENSION" &&
+      art.title.toLowerCase().includes("high hdl");
+
     html+=`<li data-title="${art.title}" style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
       <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
       <em>${art.authors}</em><br>
       <strong class="journal">${art.journal}</strong>. ${art.year}.
       ${art.doi?`<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>`:""}
+      ${isHypertensionCover ? `
+        <div class="gold-note">
+          🏆 Journal Cover • Interview to Dr. Santulli published in <em>Scientific American</em>
+        </div>
+      ` : ""}
     </li>`;
     pubNumber--;
   });
   html+="</ul>";
   document.getElementById("publications").innerHTML=html;
 
-  // Hide recent papers if already in PubMed
   const pubmedTitles=[...document.querySelectorAll("#publications strong a")].map(x=>x.textContent.trim());
   document.querySelectorAll("#recent-list li").forEach(li=>{
     if(pubmedTitles.includes(li.dataset.title)) li.style.display="none";
