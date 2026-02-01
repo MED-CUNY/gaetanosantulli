@@ -389,23 +389,50 @@ const replacements = {
  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
 };
 
-// Badge mapping
+// Badge mapping with clickable hyperlinks
 const pmidBadges = {
   "38752357": ["🏆 Journal Cover"],
-  "25133430": ["🎙️ Interview / Article Featured", "https://www.jci.org/posts/200", "🎙️ Featured in JCI Impact", "https://www.jci.org/this-month/2014/9"],
-  "32403217": ["🌟 High Citations (>800 citations)"],
-  "29843915": ["🌟 High Citations (>600 citations)"],
-  "24478758": ["🌟 High Citations (>370 citations)"],
-  "37775305": ["🏅 Editorial"],
-  "38135511": ["🏅 Editorial"],
-  "36478189": ["⭐ Recommended"],
-  "35703100": ["🏆 Journal Cover"],
-  "35042640": ["🏅 Editorial"],
+
+  "25133430": [
+    `<a href="https://www.jci.org/posts/200" target="_blank" rel="noopener noreferrer">🎙️ Interview to Prof. Santulli published in JCI</a>`, 
+    `<a href="https://www.jci.org/this-month/2014/9" target="_blank" rel="noopener noreferrer">🎙️ Featured in JCI Impact</a>`
+  ],
+
+  "32403217": ["🌟 Highly cited article (>800 citations)"],
+
+  "29843915": ["🌟 Highly cited article (>600 citations)"],
+
+  "24478758": ["🌟 Highly cited article (>370 citations)"],
+
+  "37775305": ["🏅 Editorial Commentary by Prof. G. Minotti"],
+
+  "38135511": ["🏅 Editorial Commentary by Prof. Franz H. Messerli"],
+
+  "36478189": ["⭐ Recommended in Faculty Opinions (Top 0.5% in Pharmacology & Drug Discovery) by Prof. John Tayek (UCLA)"],
+
+  "35703100": ["🏆 Featured on the Cover"],
+
+  "35042640": ["🏅 Editorial Commentary"],
+
   "34389654": ["🏆 Journal Cover"],
-  "29593014": ["⭐ Recommended"],
-  "26217001": ["🏅 Editorial", "⭐ Recommended", "🌟 High Citations (>650 citations)"],
-  "25844899": ["🌟 High Citations", "🎙️ Article Featured in JCI Impact", "http://www.jci.org/impacts/2015/5"],
-  "35968698": ["🏆 Journal Cover", "🎙️ Interview / Article Featured", "https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/"]
+
+  "29593014": ["⭐ F1000 Recommended Article"],
+
+  "26217001": [
+    "🏅 Editorial Commentary",
+    "⭐ F1000 Recommended Article",
+    "🌟 Highly cited article (>650 citations; Thomson Reuters: Top 1% in Biomedicine)"
+  ],
+
+  "25844899": [
+    "🌟 Highly cited article (Thomson Reuters: Top 1% in Biomedicine)",
+    `<a href="http://www.jci.org/impacts/2015/5" target="_blank" rel="noopener noreferrer">🎙️ Article Featured in JCI Impact</a>`
+  ],
+
+  "35968698": [
+    "🏆 Journal Cover",
+    `<a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank" rel="noopener noreferrer">🎙️ Interview to Dr. Santulli published in Scientific American</a>`
+  ]
 };
 
 async function fetchPubMed() {
