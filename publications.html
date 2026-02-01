@@ -423,7 +423,8 @@ async function fetchPubMed() {
       ${art.doi?`<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>`:""}
       ${isHypertensionCover ? `
         <div class="gold-note">
-          🏆 Journal Cover • Interview to Dr. Santulli published in <em>Scientific American</em>
+          🏆 Journal Cover • Interview to Dr. Santulli published in 
+  <em><a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank" rel="noopener noreferrer">Scientific American</a></em>
         </div>
       ` : ""}
     </li>`;
