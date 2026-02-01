@@ -411,22 +411,33 @@ async function fetchPubMed() {
   let html="<ul class='pub-list content'>";
   let pubNumber=articles.length;
   articles.forEach((art,index)=>{
-    const isHypertensionCover =
-      art.year === "2022" &&
-      art.journal === "HYPERTENSION" &&
-      art.title.toLowerCase().includes("high hdl");
+   const isHypertensionCover2022 =
+  art.year === "2022" &&
+  art.journal === "HYPERTENSION" &&
+  art.title.toLowerCase().includes("high hdl");
+
+   const isHypertensionCover2024 =
+  art.year === "2024" &&
+  art.journal === "HYPERTENSION" &&
+  art.title.toLowerCase().includes("prediabetes increases the risk of frailty");
 
     html+=`<li data-title="${art.title}" style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
       <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
       <em>${art.authors}</em><br>
       <strong class="journal">${art.journal}</strong>. ${art.year}.
       ${art.doi?`<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>`:""}
-      ${isHypertensionCover ? `
-        <div class="gold-note">
-          🏆 Journal Cover • Interview to Dr. Santulli published in 
-  <em><a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank" rel="noopener noreferrer">Scientific American</a></em>
-        </div>
-      ` : ""}
+     ${isHypertensionCover2022 ? `
+  <div class="gold-note">
+    🏆 Journal Cover • Interview to Dr. Santulli published in 
+    <em><a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank" rel="noopener noreferrer">Scientific American</a></em>
+  </div>
+` : ""}
+
+${isHypertensionCover2024 ? `
+  <div class="gold-note">
+    🏆 Journal Cover
+  </div>
+` : ""}
     </li>`;
     pubNumber--;
   });
