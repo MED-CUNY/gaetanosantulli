@@ -349,12 +349,67 @@ localStorage.setItem("pubPageCounter", count);
 document.getElementById("counter").textContent = count;
 
 function filterPublications() {
-  const query = document.getElementById('searchInput').value.toLowerCase();
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  if (!query) {
+    // Reset highlights if search is empty
+    document.querySelectorAll('.pub-list li').forEach(li => removeHighlight(li));
+    document.querySelectorAll('.pub-list li').forEach(li => li.classList.remove('hidden'));
+    return;
+  }
+
+  // Split query into multiple words for independent highlighting
+  const terms = query.split(/\s+/);
+
   document.querySelectorAll('.pub-list li').forEach(li => {
     const title = li.dataset.title.toLowerCase();
-    if(title.includes(query)) li.classList.remove('hidden');
-    else li.classList.add('hidden');
+    const authors = li.dataset.authors?.toLowerCase() || "";
+    const journal = li.dataset.journal?.toLowerCase() || "";
+
+    // Check if any of the terms match
+    const isMatch = terms.some(term => title.includes(term) || authors.includes(term) || journal.includes(term));
+
+    if (isMatch) {
+      li.classList.remove('hidden');
+      highlightMatches(li, terms);
+    } else {
+      li.classList.add('hidden');
+      removeHighlight(li);
+    }
   });
+}
+
+// Highlight matching terms in title, authors, journal
+function highlightMatches(li, terms) {
+  const titleEl = li.querySelector('strong a');
+  const authorsEl = li.querySelector('em');
+  const journalEl = li.querySelector('.journal');
+
+  [titleEl, authorsEl, journalEl].forEach(el => {
+    if (!el) return;
+    let text = el.textContent;
+    terms.forEach(term => {
+      const regex = new RegExp(`(${escapeRegExp(term)})`, 'gi');
+      text = text.replace(regex, '<mark style="background-color: #FFD700; color:#000;">$1</mark>');
+    });
+    el.innerHTML = text;
+  });
+}
+
+// Remove highlights
+function removeHighlight(li) {
+  const titleEl = li.querySelector('strong a');
+  const authorsEl = li.querySelector('em');
+  const journalEl = li.querySelector('.journal');
+
+  [titleEl, authorsEl, journalEl].forEach(el => {
+    if (!el) return;
+    el.innerHTML = el.textContent;
+  });
+}
+
+// Escape special characters for regex
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 // =========================
