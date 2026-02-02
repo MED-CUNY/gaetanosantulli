@@ -197,7 +197,30 @@ nav a:hover {
   letter-spacing: 0.3px;
 }
 
-/* Animation keyframes */
+/* -------------------------
+   Interviews Section
+------------------------- */
+#interviews ul {
+  list-style: none;
+  padding: 0;
+}
+
+#interviews li {
+  margin-bottom: 12px;
+}
+
+#interviews a {
+  color: #36d1dc;
+  text-decoration: none;
+}
+
+#interviews a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------
+   Animation keyframes
+------------------------- */
 @keyframes fadeUp {
   to {
     opacity: 1;
@@ -245,12 +268,12 @@ footer {
 <!-- Content -->
 <div class="content">
 
-  <!-- Unified Search Box (for Awards & Services) -->
+  <!-- Unified Search Box -->
   <input type="text" id="searchBox" placeholder="Search all awards, services, patents..." onkeyup="filterContent()">
 
   <h2>Prof. Santulli's Awards (Selection)</h2>
   <ul id="awardsList">
-    <!-- All awards as before -->
+    <!-- Awards list unchanged -->
     <li>2026: Elected Member of the American Society for Clinical Investigation (ASCI)</li>
     <li>2025: AHA Hypertension Award for Research Excellence</li>
     <li>2024: ‘Thomas Force’ Mentor Award (ACC) – Mentorship to Postdoctoral Fellow Dr. Jessica Gambardella</li>
@@ -283,7 +306,7 @@ footer {
 
   <h2>Professional Services</h2>
   <ul id="servicesList">
-    <!-- Services as before -->
+    <!-- Services list unchanged -->
     <li>Grant reviewer for multiple Institutes and Associations including NIH, NSF, ERC, NYAS, Doris Duke Charitable Foundation, AHA (USA), AFM Telethon (France), Ministero della Salute, Fondazione PISA, Ministero dell’Istruzione dell’Università e della Ricerca (Italia), Israel Science Foundation, Austrian Science Fund, Icelandic Research Fund, Polish Research Fund, NIHR, ME Research, and Wellcome Trust (UK)</li>
     <li>Member of the following Study Sections:
       <ul>
@@ -301,29 +324,60 @@ footer {
     </li>
   </ul>
 
-<div class="recent-box" id="patents-box">
-  <h2>Patents</h2>
-  <ul id="patent-list">
-    <li>
-      <span class="patent-title">CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW­ONSET DIABETES IN COVID-19 AND LONG COVID (C-00001500-2022)</span>
-      <strong>US-A1:</strong> 20240287608; <strong>Number:</strong> 18/424483<br>
-      <strong>International Classes:</strong> C12Q1/6883<br>
-      <strong>Publication Number:</strong> 20240287608
-    </li>
-    <li>
-      <span class="patent-title">CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19 (C-00001482-2021)</span>
-      <strong>International No.:</strong> PCT/US2023/030891<br>
-      <strong>Publication Number:</strong> WO/2024/044228
-    </li>
-    <li>
-      <span class="patent-title">SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION (#C-00001503-2022)</span>
-    </li>
-    <li>
-      <span class="patent-title">COMPOSITIONS AND METHODS FOR PROVIDING CARDIOPROTECTIVE EFFECTS (P-612682-US-2022)</span><br>
-      <strong>Publication Number:</strong> 20220347163
-    </li>
-  </ul>
-</div>
+  <!-- -------------------------
+       Interviews Section
+  ------------------------- -->
+  <div id="interviews">
+    <h2>Interviews Appeared in News and Magazines</h2>
+    <ul>
+      <li><a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank">Scientific American</a></li>
+      <li><a href="https://www.reuters.com/article/business/healthcare-pharmaceuticals/air-pollution-tied-to-high-blood-pressure-risk-idUSKCN0YM2J8" target="_blank">Reuters</a></li>
+      <li><a href="https://www.npr.org/2020/10/25/927564413/researchers-learning-more-about-how-the-coronavirus-sabotages-blood-vessels" target="_blank">National Public Radio (npr)</a></li>
+      <li><a href="https://www.npr.org/sections/health-shots/2020/11/05/917317541/clots-strokes-and-rashes-is-covid-19-a-disease-of-the-blood-vessels" target="_blank">NPR Shots</a></li>
+      <li><a href="https://www.aol.com/articles/low-bad-cholesterol-may-raise-112300356.html" target="_blank">AOL News</a></li>
+      <li><a href="https://www.everydayhealth.com/hypertension/fda-approves-first-pill-in-new-family-of-medicines-to-treat-hypertension/" target="_blank">Everyday Health</a></li>
+      <li><a href="https://www.timesnownews.com/health/covid-infection-can-increase-the-risk-of-high-cholesterol-by-20-per-cent-finds-study-article-114889338" target="_blank">Times Now</a></li>
+      <li><a href="https://www.insideprecisionmedicine.com/topics/patient-care/study-links-covid-19-pandemic-to-increased-risk-of-dyslipidemia-in-adults/" target="_blank">Inside Precision Medicine</a></li>
+      <li><a href="https://www.technologynetworks.com/tn/news/increase-in-blood-fat-disorder-risk-linked-to-covid-19-pandemic-392840" target="_blank">Technology Networks</a></li>
+      <li><a href="ttps://www.correiobraziliense.com.br/ciencia-e-saude/2024/11/6978957-infeccao-por-covid-19-eleva-nivel-de-gordura-no-sangue.html" target="_blank">Correio Braziliense</a></li>
+      <li><a href="https://www.ahmedabadmirror.com/covid-caused-spike-in-blood-lipid-levels/81879159.html" target="_blank">Ahmedabad Mirror</a></li>
+      <li><a href="https://www.santelog.com/actualites/covid-un-risque-considerablement-accru-de-dyslipidemie" target="_blank">Santé Log</a></li>
+      <li><a href="https://www.pourquoidocteur.fr/Articles/Question-d-actu/49664-La-Covid-19-augmente-risque-taux-anormaux-graisse-le-sang" target="_blank">Purquoi Docteur</a></li>
+      <li><a href="https://www.onmed.gr/ygeia/story/407628/dyslipidaimia-giati-prepei-na-elegxete-ta-epipeda-lipidion-an-exete-nosisei-me-covid" target="_blank">OnMed</a></li>
+      <li><a href="https://medicalxpress.com/news/2024-11-covid-sharply-boosts-blood-fat.html" target="_blank">Medical Xpress</a></li>
+      <li><a href="https://www.streetinsider.com/PRNewswire/COVID-19+Sharply+Boosts+Risk+for+Blood-Fat+Disorders/23915515.html" target="_blank">Street Insider</a></li>
+      <li><a href="https://www.gmanetwork.com/news/lifestyle/healthandwellness/568337/air-pollution-tied-to-high-blood-pressure-risk/story/" target="_blank">GMA Network News</a></li>
+      <li><a href="https://kffhealthnews.org/news/clots-strokes-and-rashes-is-covid-a-disease-a-disease-of-the-blood-vessels/" target="_blank">KFF Health News</a></li>
+      <li><a href="https://www.the-scientist.com/most-active-peer-reviewers-honored-32808" target="_blank">The Scientist</a></li>
+    </ul>
+  </div>
+
+  <!-- -------------------------
+       Patents Section
+  ------------------------- -->
+  <div class="recent-box" id="patents-box">
+    <h2>Patents</h2>
+    <ul id="patent-list">
+      <li>
+        <span class="patent-title">CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW­ONSET DIABETES IN COVID-19 AND LONG COVID (C-00001500-2022)</span>
+        <strong>US-A1:</strong> 20240287608; <strong>Number:</strong> 18/424483<br>
+        <strong>International Classes:</strong> C12Q1/6883<br>
+        <strong>Publication Number:</strong> 20240287608
+      </li>
+      <li>
+        <span class="patent-title">CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19 (C-00001482-2021)</span>
+        <strong>International No.:</strong> PCT/US2023/030891<br>
+        <strong>Publication Number:</strong> WO/2024/044228
+      </li>
+      <li>
+        <span class="patent-title">SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION (#C-00001503-2022)</span>
+      </li>
+      <li>
+        <span class="patent-title">COMPOSITIONS AND METHODS FOR PROVIDING CARDIOPROTECTIVE EFFECTS (P-612682-US-2022)</span><br>
+        <strong>Publication Number:</strong> 20220347163
+      </li>
+    </ul>
+  </div>
 
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
