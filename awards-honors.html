@@ -155,6 +155,57 @@ nav a:hover {
 }
 
 /* -------------------------
+   Patents – animated cards
+------------------------- */
+#patents-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+#patents-box li {
+  background-color: #0f0f0f;
+  border-left: 4px solid #36d1dc;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Staggered animation */
+#patents-box li:nth-child(1) { animation-delay: 0.1s; }
+#patents-box li:nth-child(2) { animation-delay: 0.2s; }
+#patents-box li:nth-child(3) { animation-delay: 0.3s; }
+#patents-box li:nth-child(4) { animation-delay: 0.4s; }
+
+/* Hover effect */
+#patents-box li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(54, 209, 220, 0.25);
+  transition: all 0.25s ease;
+}
+
+/* Patent title styling */
+#patents-box li strong:first-of-type,
+.patent-title {
+  color: #36d1dc;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+/* Animation keyframes */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------
    Footer
 ------------------------- */
 footer {
@@ -194,7 +245,7 @@ footer {
 <!-- Content -->
 <div class="content">
 
-  <!-- Search Box -->
+  <!-- Unified Search Box (for Awards & Services) -->
   <input type="text" id="searchBox" placeholder="Search all awards, services, patents..." onkeyup="filterContent()">
 
   <h2>Prof. Santulli's Awards (Selection)</h2>
@@ -248,35 +299,32 @@ footer {
     </li>
   </ul>
 
-  
 <div class="recent-box" id="patents-box">
   <h2>Patents</h2>
-  <input type="text" id="searchPatentInput" placeholder="Search Prof. Santulli's patents..." oninput="filterPatents()">
   <ul id="patent-list">
     <li data-title="CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW­ONSET DIABETES IN COVID-19 AND LONG COVID" 
         data-number="18/424483" data-us="20240287608" data-classes="C12Q1/6883" data-publication="20240287608">
-      <strong>Title:</strong> CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW­ONSET DIABETES IN COVID-19 AND LONG COVID (C-00001500-2022)<br>
+      <span class="patent-title">CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW­ONSET DIABETES IN COVID-19 AND LONG COVID (C-00001500-2022)</span>
       <strong>US-A1:</strong> 20240287608; <strong>Number:</strong> 18/424483<br>
       <strong>International Classes:</strong> C12Q1/6883<br>
       <strong>Publication Number:</strong> 20240287608
     </li>
     <li data-title="CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19" 
         data-number="PCT/US2023/030891" data-us="" data-classes="" data-publication="WO/2024/044228">
-      <strong>Title:</strong> CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19 (C-00001482-2021)<br>
+      <span class="patent-title">CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19 (C-00001482-2021)</span>
       <strong>International No.:</strong> PCT/US2023/030891<br>
       <strong>Publication Number:</strong> WO/2024/044228
     </li>
     <li data-title="SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION" data-number="" data-us="" data-classes="" data-publication="">
-      <strong>Title:</strong> SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION (#C-00001503-2022)
+      <span class="patent-title">SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION (#C-00001503-2022)</span>
     </li>
     <li data-title="COMPOSITIONS AND METHODS FOR PROVIDING CARDIOPROTECTIVE EFFECTS" 
         data-number="" data-us="20220347163" data-classes="" data-publication="20220347163">
-      <strong>Title:</strong> COMPOSITIONS AND METHODS FOR PROVIDING CARDIOPROTECTIVE EFFECTS (P-612682-US-2022)<br>
+      <span class="patent-title">COMPOSITIONS AND METHODS FOR PROVIDING CARDIOPROTECTIVE EFFECTS (P-612682-US-2022)</span><br>
       <strong>Publication Number:</strong> 20220347163
     </li>
   </ul>
 </div>
-
 
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
@@ -290,7 +338,7 @@ function toggleMenu() {
 // Unified search across all lists
 function filterContent() {
   const filter = document.getElementById('searchBox').value.toLowerCase();
-  const lists = ['awardsList','servicesList','patentsList'];
+  const lists = ['awardsList','servicesList','patent-list']; // fixed ID
   
   lists.forEach(id => {
     const ul = document.getElementById(id);
@@ -310,5 +358,3 @@ function filterContent() {
 
 </body>
 </html>
-
-
