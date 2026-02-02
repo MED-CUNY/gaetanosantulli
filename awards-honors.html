@@ -171,6 +171,7 @@ nav a:hover {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.6s ease forwards;
+  color: #ffffff; /* default text color inside li */
 }
 
 /* Staggered animation */
@@ -186,10 +187,9 @@ nav a:hover {
   transition: all 0.25s ease;
 }
 
-/* Patent title styling */
-#patents-box li strong:first-of-type,
+/* Patent title styling only */
 .patent-title {
-  color: #36d1dc;
+  color: #36d1dc;  /* light blue */
   font-size: 16px;
   font-weight: bold;
   display: block;
@@ -250,6 +250,7 @@ footer {
 
   <h2>Prof. Santulli's Awards (Selection)</h2>
   <ul id="awardsList">
+    <!-- All awards as before -->
     <li>2026: Elected Member of the American Society for Clinical Investigation (ASCI)</li>
     <li>2025: AHA Hypertension Award for Research Excellence</li>
     <li>2024: ‘Thomas Force’ Mentor Award (ACC) – Mentorship to Postdoctoral Fellow Dr. Jessica Gambardella</li>
@@ -282,6 +283,7 @@ footer {
 
   <h2>Professional Services</h2>
   <ul id="servicesList">
+    <!-- Services as before -->
     <li>Grant reviewer for multiple Institutes and Associations including NIH, NSF, ERC, NYAS, Doris Duke Charitable Foundation, AHA (USA), AFM Telethon (France), Ministero della Salute, Fondazione PISA, Ministero dell’Istruzione dell’Università e della Ricerca (Italia), Israel Science Foundation, Austrian Science Fund, Icelandic Research Fund, Polish Research Fund, NIHR, ME Research, and Wellcome Trust (UK)</li>
     <li>Member of the following Study Sections:
       <ul>
@@ -302,24 +304,21 @@ footer {
 <div class="recent-box" id="patents-box">
   <h2>Patents</h2>
   <ul id="patent-list">
-    <li data-title="CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW­ONSET DIABETES IN COVID-19 AND LONG COVID" 
-        data-number="18/424483" data-us="20240287608" data-classes="C12Q1/6883" data-publication="20240287608">
+    <li>
       <span class="patent-title">CIRCULATING LEVELS OF ENDOTHELIAL MICRORNA PREDICT NEW­ONSET DIABETES IN COVID-19 AND LONG COVID (C-00001500-2022)</span>
       <strong>US-A1:</strong> 20240287608; <strong>Number:</strong> 18/424483<br>
       <strong>International Classes:</strong> C12Q1/6883<br>
       <strong>Publication Number:</strong> 20240287608
     </li>
-    <li data-title="CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19" 
-        data-number="PCT/US2023/030891" data-us="" data-classes="" data-publication="WO/2024/044228">
+    <li>
       <span class="patent-title">CIRCULATING LEVELS OF miRNA-24 PREDICT CEREBROVASCULAR EVENTS IN COVID-19 (C-00001482-2021)</span>
       <strong>International No.:</strong> PCT/US2023/030891<br>
       <strong>Publication Number:</strong> WO/2024/044228
     </li>
-    <li data-title="SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION" data-number="" data-us="" data-classes="" data-publication="">
+    <li>
       <span class="patent-title">SGLT2 INHIBITORS PREVENT AND IMPROVE COGNITIVE DYSFUNCTION (#C-00001503-2022)</span>
     </li>
-    <li data-title="COMPOSITIONS AND METHODS FOR PROVIDING CARDIOPROTECTIVE EFFECTS" 
-        data-number="" data-us="20220347163" data-classes="" data-publication="20220347163">
+    <li>
       <span class="patent-title">COMPOSITIONS AND METHODS FOR PROVIDING CARDIOPROTECTIVE EFFECTS (P-612682-US-2022)</span><br>
       <strong>Publication Number:</strong> 20220347163
     </li>
@@ -338,7 +337,7 @@ function toggleMenu() {
 // Unified search across all lists
 function filterContent() {
   const filter = document.getElementById('searchBox').value.toLowerCase();
-  const lists = ['awardsList','servicesList','patent-list']; // fixed ID
+  const lists = ['awardsList','servicesList','patent-list'];
   
   lists.forEach(id => {
     const ul = document.getElementById(id);
