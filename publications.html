@@ -297,25 +297,10 @@ footer {
     <em>Pasquale Mone, Marco Ferrone, Francesco Spione, Dimitris Christodoulakis, Francesco Melillo, Antonio Rainone, Domenico Ponticelli, Tullio Tesorio, Marco Di Mauro, Anna Marro, Gaetano Macina, Maria Morgante, Germano Guerra, <u>Gaetano Santulli</u></em><br>
     <strong class="journal">CARDIOVASCULAR RESEARCH</strong>. 2026. <em>In press.</em>
   </li>
-  <li data-title="Vitamin D in cardiovascular medicine: from molecular mechanisms to clinical">
-    <strong>Vitamin D in cardiovascular medicine: from molecular mechanisms to clinical translation.</strong><br>
-    <em>Fahimeh Varzideh, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
-    <strong class="journal">NUTRIENTS</strong>. 2026. <em>In press.</em>
-  </li>
   <li data-title="TimeVault turns vault particles into molecular memory of transcriptional states">
     <strong>TimeVault turns vault particles into molecular memory of transcriptional states: how to decode the cellular black box.</strong><br>
     <em><u>Gaetano Santulli</u></em><br>
     <strong class="journal">CELL CYCLE</strong>. 2026. <em>In press.</em>
-  </li>
-  <li data-title="Autonomic neurotransmission in cardiovascular regulation and pathophysiology">
-    <strong>Autonomic neurotransmission in cardiovascular regulation and pathophysiology.</strong><br>
-    <em>Fahimeh Varzideh, Stanislovas S. Jankauskas, Pasquale Mone, Urna Kansakar, <u>Gaetano Santulli</u></em><br>
-    <strong class="journal">FRONTIERS IN NEUROSCIENCE</strong>. 2026. <em>In press.</em>
-  </li>
-  <li data-title="Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist">
-    <strong>Orforglipron: a comprehensive review of an oral small-molecule GLP-1 receptor agonist for obesity and type 2 diabetes.</strong><br>
-    <em>Urna Kansakar, Stanislovas S. Jankauskas, Shivangi Pande, Pasquale Mone, Fahimeh Varzideh, <u>Gaetano Santulli</u></em><br>
-    <strong class="journal">INTERNATIONAL JOURNAL OF MOLECULAR SCIENCES</strong>. 2026. <em>In press.</em>
   </li>
 </ul>
 </div>
@@ -357,7 +342,6 @@ function filterPublications() {
     return;
   }
 
-  // Split query into multiple words for independent highlighting
   const terms = query.split(/\s+/);
 
   document.querySelectorAll('.pub-list li').forEach(li => {
@@ -365,7 +349,6 @@ function filterPublications() {
     const authors = li.dataset.authors?.toLowerCase() || "";
     const journal = li.dataset.journal?.toLowerCase() || "";
 
-    // Check if any of the terms match
     const isMatch = terms.some(term => title.includes(term) || authors.includes(term) || journal.includes(term));
 
     if (isMatch) {
@@ -378,7 +361,6 @@ function filterPublications() {
   });
 }
 
-// Highlight matching terms in title, authors, journal
 function highlightMatches(li, terms) {
   const titleEl = li.querySelector('strong a');
   const authorsEl = li.querySelector('em');
@@ -395,7 +377,6 @@ function highlightMatches(li, terms) {
   });
 }
 
-// Remove highlights
 function removeHighlight(li) {
   const titleEl = li.querySelector('strong a');
   const authorsEl = li.querySelector('em');
@@ -407,14 +388,13 @@ function removeHighlight(li) {
   });
 }
 
-// Escape special characters for regex
 function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// =========================
-// PUBMED FETCH & BADGE MAPPING
-// =========================
+/* =========================
+   PUBMED FETCH & BADGE MAPPING
+========================= */
 const query = "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title]";
 
 const replacements = {
@@ -444,46 +424,31 @@ const replacements = {
  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":"HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
 };
 
-// Badge mapping with clickable hyperlinks
 const pmidBadges = {
   "38752357": ["🏆 Journal Cover"],
-
   "25133430": [
     `<a href="https://www.jci.org/posts/200" target="_blank" rel="noopener noreferrer">🎙️ Interview to Prof. Santulli published in JCI</a>`, 
     `<a href="https://www.jci.org/this-month/2014/9" target="_blank" rel="noopener noreferrer">🎙️ Featured in JCI Impact</a>`
   ],
-
   "32403217": ["🌟 Highly cited article (>800 citations)"],
-
   "29843915": ["🌟 Highly cited article (>600 citations)"],
-
   "24478758": ["🌟 Highly cited article (>370 citations)"],
-
   "37775305": ["🏅 Editorial Commentary by Prof. G. Minotti"],
-
   "38135511": ["🏅 Editorial Commentary by Prof. Franz H. Messerli"],
-
   "36478189": ["⭐ Recommended in Faculty Opinions (Top 0.5% in Pharmacology & Drug Discovery) by Prof. John Tayek (UCLA)"],
-
   "35703100": ["🏆 Featured on the Cover"],
-
   "35042640": ["🏅 Editorial Commentary"],
-
   "34389654": ["🏆 Journal Cover"],
-
   "29593014": ["⭐ F1000 Recommended Article"],
-
   "26217001": [
     "🏅 Editorial Commentary",
     "⭐ F1000 Recommended Article",
     "🌟 Highly cited article (>650 citations; Thomson Reuters: Top 1% in Biomedicine)"
   ],
-
   "25844899": [
     "🌟 Highly cited article (Thomson Reuters: Top 1% in Biomedicine)",
     `<a href="http://www.jci.org/impacts/2015/5" target="_blank" rel="noopener noreferrer">🎙️ Article Featured in JCI Impact</a>`
   ],
-
   "35968698": [
     "🏆 Journal Cover",
     `<a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank" rel="noopener noreferrer">🎙️ Interview to Dr. Santulli published in Scientific American</a>`
@@ -527,7 +492,6 @@ html += `<li
   <em>${art.authors}</em><br>
   <strong class="journal">${art.journal}</strong>. ${art.year}.
   ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}`;
-
 
     if (pmidBadges[art.pmid]) {
       for (let i = 0; i < pmidBadges[art.pmid].length; i++) {
