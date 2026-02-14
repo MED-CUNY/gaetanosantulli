@@ -413,11 +413,73 @@ function escapeRegExp(string) {
 const query = "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title])";
 
 const replacements = {
-  /* same replacements as before */
+ // Journal replacements
+  "ECLINICALMEDICINE": "LANCET eCLINICALMEDICINE",
+  "ISCIENCE": "iSCIENCE",
+  "HYPERTENSION (DALLAS, TEX. : 1979)": "HYPERTENSION",
+  "CELL CYCLE (GEORGETOWN, TEX.)": "CELL CYCLE",
+  "CARDIOVASCULAR DIABETOLOGY. ENDOCRINOLOGY REPORTS": "CARDIOVASCULAR DIABETOLOGY - ENDOCRINOLOGY REPORTS",
+  "NPJ METABOLIC HEALTH AND DISEASE": "NPJ METABOLIC HEALTH AND DISEASE (NATURE PORTFOLIO JOURNAL)",
+  "HYPERTENSION RESEARCH : OFFICIAL JOURNAL OF THE JAPANESE SOCIETY OF HYPERTENSION": "HYPERTENSION RESEARCH",
+  "CELLULAR AND MOLECULAR LIFE SCIENCES : CMLS": "CELLULAR AND MOLECULAR LIFE SCIENCES",
+  "MOLECULAR MEDICINE (CAMBRIDGE, MASS.)": "MOLECULAR MEDICINE",
+  "THE LANCET. HEALTHY LONGEVITY": "THE LANCET HEALTHY LONGEVITY",
+  "THE LANCET. DIABETES & ENDOCRINOLOGY": "THE LANCET DIABETES & ENDOCRINOLOGY",
+  "INTERNATIONAL JOURNAL OF CARDIOLOGY. HEART & VASCULATURE": "INTERNATIONAL JOURNAL OF CARDIOLOGY - HEART & VASCULATURE",
+  "ERJ OPEN RESEARCH": "EUROPEAN RESPIRATORY SOCIETY OPEN RESEARCH",
+  "EUROPEAN HEART JOURNAL. CARDIOVASCULAR PHARMACOTHERAPY": "EUROPEAN HEART JOURNAL - CARDIOVASCULAR PHARMACOTHERAPY",
+  "JOURNAL OF ALZHEIMER'S DISEASE : JAD": "JOURNAL OF ALZHEIMER'S DISEASE",
+  "ANTIOXIDANTS (BASEL, SWITZERLAND)": "ANTIOXIDANTS",
+  "BIOENGINEERING (BASEL, SWITZERLAND)": "BIOENGINEERING",
+  "PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA": "PNAS USA",
+  "JOURNAL OF CLINICAL HYPERTENSION (GREENWICH, CONN.)": "JOURNAL OF CLINICAL HYPERTENSION",
+  "ACTA PHYSIOLOGICA (OXFORD, ENGLAND)": "ACTA PHYSIOLOGICA",
+  "CRITICAL CARE (LONDON, ENGLAND)": "CRITICAL CARE",
+  "IMMUNITY & AGEING : I & A": "IMMUNITY & AGEING",
+  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":
+    "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
 };
 
 const pmidBadges = {
-  /* same badges as before */
+  "38752357": "🏆 Journal Cover",
+
+  "25133430": `
+🎙️ Interview to Prof. Santulli (JCI):
+<a href="https://www.jci.org/posts/200" target="_blank">JCI Interview</a><br>
+🌟 Featured in <a href="https://www.jci.org/this-month/2014/9" target="_blank">JCI Impact</a>
+  `,
+
+  "32403217": "🌟 High Citations (>800 citations)",
+  "29843915": "🌟 High Citations (>600 citations)",
+  "24478758": "🌟 High Citations (>370 citations)",
+
+  "37775305": "🏅 Editorial Commentary by Prof. G. Minotti",
+  "38135511": "🏅 Editorial Commentary by Prof. Franz H. Messerli",
+
+  "36478189": "⭐ Recommended in Faculty Opinions (Top 0.5%, Pharmacology & Drug Discovery – Prof. John Tayek, UCLA)",
+
+  "35703100": "🏆 Featured on the Cover",
+  "35042640": "🏅 Editorial Commentary",
+  "34389654": "🏆 Journal Cover",
+
+  "29593014": "⭐ F1000 Recommended Article",
+
+  "26217001": `
+🏅 Editorial Commentary<br>
+⭐ F1000 Recommended Article<br>
+🌟 Highly Cited (>650 citations; Thomson Reuters Top 1% in Biomedicine)
+  `,
+
+  "25844899": `
+🌟 Highly Cited (Thomson Reuters Top 1% in Biomedicine)<br>
+🎙️ Featured in <a href="http://www.jci.org/impacts/2015/5" target="_blank">JCI Impact</a>
+  `,
+
+  "35968698": `
+🏆 Journal Cover<br>
+🎙️ Interview in <a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank">
+Scientific American</a>
+  `
 };
 
 async function fetchPubMed() {
