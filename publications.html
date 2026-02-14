@@ -107,7 +107,6 @@ nav a:hover { color: #d0f0e8; }
   position: relative;
 }
 
-/* Hover effect with subtle scaling & shadow */
 .content li:hover {
   transform: scale(1.03);
   background-color: #1a1a1a;
@@ -125,9 +124,9 @@ nav a:hover { color: #d0f0e8; }
   font-size: 14px;
 }
 
-/* Show abstract on hover */
+/* Show FULL abstract on hover — MODIFIED */
 .content li:hover .abstract {
-  max-height: 500px;
+  max-height: 9999px;
   opacity: 1;
 }
 
@@ -170,12 +169,6 @@ u { text-decoration: underline; }
   padding: 18px;
   border-radius: 14px;
   background: rgba(0,0,0,0.35);
-  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
-}
-.recent-box li:hover {
-  transform: scale(1.02);
-  background-color: #1a1a1a;
-  box-shadow: 0 5px 12px rgba(255,255,255,0.15);
 }
 
 /* =========================
@@ -218,17 +211,6 @@ u { text-decoration: underline; }
   background: linear-gradient(90deg, #FFD700, #FFB800, #FFD700);
   border-radius: 6px;
   box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.gold-note:hover {
-  animation: goldPulse 0.8s ease-in-out;
-}
-.gold-note em { font-style: italic; }
-
-@keyframes goldPulse {
-  0%   { transform: scale(1); box-shadow: 0 0 10px rgba(255,215,0,0.5); }
-  50%  { transform: scale(1.04); box-shadow: 0 0 18px rgba(255,215,0,0.9); }
-  100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,215,0,0.5); }
 }
 
 /* =========================
@@ -256,36 +238,6 @@ footer {
   margin-top: 60px;
   font-size: 14px;
 }
-
-/* =========================
-   PRINT-FRIENDLY
-========================= */
-@media print {
-  body { background: #ffffff; color: #000000; font-size: 11pt; }
-  nav, .hero, .hamburger, .page-counter, footer { display: none !important; }
-  .content { max-width: 100%; margin: 0; padding: 0; }
-  h2 { color: #000000; page-break-after: avoid; }
-  ul.pub-list li { background: none; box-shadow: none; border-radius: 0; padding: 6px 0; margin-bottom: 10px; }
-  ul.pub-list li::before { display: none; }
-  a { color: #000000; text-decoration: none; }
-  a::after { content: " (" attr(href) ")"; font-size: 9pt; }
-}
-
-/* =========================
-   SEARCH INPUT STYLING
-========================= */
-#searchInput {
-  width: 100%;
-  padding: 12px 18px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: none;
-  font-size: 16px;
-  background-color: #1a1a1a;
-  color: #F5F5F5;
-}
-#searchInput::placeholder { color: #888; }
-
 </style>
 </head>
 
@@ -311,27 +263,6 @@ footer {
 
 <input type="text" id="searchInput" placeholder="Search Prof. Santulli's publications.." oninput="filterPublications()">
 
-<div class="recent-box" id="recent-box">
-<h2>Recently Accepted Papers</h2>
-<ul id="recent-list">
-  <li data-title="SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF">
-    <strong>SGLT2 inhibitors but not other antidiabetic drugs improve frailty in older adults with diabetes and HFpEF.</strong><br>
-    <em>Pasquale Mone, Marco Ferrone, Francesco Spione, Dimitris Christodoulakis, Francesco Melillo, Antonio Rainone, Domenico Ponticelli, Tullio Tesorio, Marco Di Mauro, Anna Marro, Gaetano Macina, Maria Morgante, Germano Guerra, <u>Gaetano Santulli</u></em><br>
-    <strong class="journal">CARDIOVASCULAR RESEARCH</strong>. 2026. <em>In press.</em>
-  </li>
-  <li data-title="TimeVault turns vault particles into molecular memory of transcriptional states">
-    <strong>TimeVault turns vault particles into molecular memory of transcriptional states: how to decode the cellular black box.</strong><br>
-    <em><u>Gaetano Santulli</u></em><br>
-    <strong class="journal">CELL CYCLE</strong>. 2026. <em>In press.</em>
-  </li>
-</ul>
-</div>
-
-<div class="cover-box">
-<h2>Selection of Covers of our Best Papers</h2>
-<img src="covers.png" alt="Covers of Journals where the Santulli Lab published">
-</div>
-
 <div id="publications">
 <p>Loading publications..</p>
 </div>
@@ -346,79 +277,82 @@ Page Visits: <span id="counter">0</span>
 </footer>
 
 <script>
-function toggleMenu() { 
-  document.getElementById('nav-menu').classList.toggle('active'); 
-}
-
-let count = localStorage.getItem("pubPageCounter") || 5400;
-count++;
-localStorage.setItem("pubPageCounter", count);
-document.getElementById("counter").textContent = count;
-
-function filterPublications() {
-  const query = document.getElementById('searchInput').value.trim().toLowerCase();
-  if (!query) {
-    document.querySelectorAll('.pub-list li').forEach(li => removeHighlight(li));
-    document.querySelectorAll('.pub-list li').forEach(li => li.classList.remove('hidden'));
-    return;
-  }
-  const terms = query.split(/\s+/);
-  document.querySelectorAll('.pub-list li').forEach(li => {
-    const title = li.dataset.title.toLowerCase();
-    const authors = li.dataset.authors?.toLowerCase() || "";
-    const journal = li.dataset.journal?.toLowerCase() || "";
-    const isMatch = terms.some(term => title.includes(term) || authors.includes(term) || journal.includes(term));
-    if (isMatch) {
-      li.classList.remove('hidden');
-      highlightMatches(li, terms);
-    } else {
-      li.classList.add('hidden');
-      removeHighlight(li);
-    }
-  });
-}
-
-function highlightMatches(li, terms) {
-  const titleEl = li.querySelector('strong a');
-  const authorsEl = li.querySelector('em');
-  const journalEl = li.querySelector('.journal');
-  [titleEl, authorsEl, journalEl].forEach(el => {
-    if (!el) return;
-    let text = el.textContent;
-    terms.forEach(term => {
-      const regex = new RegExp(`(${escapeRegExp(term)})`, 'gi');
-      text = text.replace(regex, '<mark style="background-color: #FFD700; color:#000;">$1</mark>');
-    });
-    el.innerHTML = text;
-  });
-}
-
-function removeHighlight(li) {
-  const titleEl = li.querySelector('strong a');
-  const authorsEl = li.querySelector('em');
-  const journalEl = li.querySelector('.journal');
-  [titleEl, authorsEl, journalEl].forEach(el => {
-    if (!el) return;
-    el.innerHTML = el.textContent;
-  });
-}
-
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
 /* =========================
    PUBMED FETCH & ABSTRACT ON HOVER
 ========================= */
 const query = "((((((Santulli, G[Author]) NOT corrigendum[Title]) NOT spider[Title]) NOT erratum[Title]) NOT habitat[Title]) NOT dogs[Title]) NOT introduction[Title]) NOT correction[Title]) NOT violence[Title])";
 
 const replacements = {
-  /* same replacements as before */
+  // Journal replacements
+  "ECLINICALMEDICINE": "LANCET eCLINICALMEDICINE",
+  "ISCIENCE": "iSCIENCE",
+  "HYPERTENSION (DALLAS, TEX. : 1979)": "HYPERTENSION",
+  "CELL CYCLE (GEORGETOWN, TEX.)": "CELL CYCLE",
+  "CARDIOVASCULAR DIABETOLOGY. ENDOCRINOLOGY REPORTS": "CARDIOVASCULAR DIABETOLOGY - ENDOCRINOLOGY REPORTS",
+  "NPJ METABOLIC HEALTH AND DISEASE": "NPJ METABOLIC HEALTH AND DISEASE (NATURE PORTFOLIO JOURNAL)",
+  "HYPERTENSION RESEARCH : OFFICIAL JOURNAL OF THE JAPANESE SOCIETY OF HYPERTENSION": "HYPERTENSION RESEARCH",
+  "CELLULAR AND MOLECULAR LIFE SCIENCES : CMLS": "CELLULAR AND MOLECULAR LIFE SCIENCES",
+  "MOLECULAR MEDICINE (CAMBRIDGE, MASS.)": "MOLECULAR MEDICINE",
+  "THE LANCET. HEALTHY LONGEVITY": "THE LANCET HEALTHY LONGEVITY",
+  "THE LANCET. DIABETES & ENDOCRINOLOGY": "THE LANCET DIABETES & ENDOCRINOLOGY",
+  "INTERNATIONAL JOURNAL OF CARDIOLOGY. HEART & VASCULATURE": "INTERNATIONAL JOURNAL OF CARDIOLOGY - HEART & VASCULATURE",
+  "ERJ OPEN RESEARCH": "EUROPEAN RESPIRATORY SOCIETY OPEN RESEARCH",
+  "EUROPEAN HEART JOURNAL. CARDIOVASCULAR PHARMACOTHERAPY": "EUROPEAN HEART JOURNAL - CARDIOVASCULAR PHARMACOTHERAPY",
+  "JOURNAL OF ALZHEIMER'S DISEASE : JAD": "JOURNAL OF ALZHEIMER'S DISEASE",
+  "ANTIOXIDANTS (BASEL, SWITZERLAND)": "ANTIOXIDANTS",
+  "BIOENGINEERING (BASEL, SWITZERLAND)": "BIOENGINEERING",
+  "PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA": "PNAS USA",
+  "JOURNAL OF CLINICAL HYPERTENSION (GREENWICH, CONN.)": "JOURNAL OF CLINICAL HYPERTENSION",
+  "ACTA PHYSIOLOGICA (OXFORD, ENGLAND)": "ACTA PHYSIOLOGICA",
+  "CRITICAL CARE (LONDON, ENGLAND)": "CRITICAL CARE",
+  "IMMUNITY & AGEING : I & A": "IMMUNITY & AGEING",
+  "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION : THE OFFICIAL JOURNAL OF THE ITALIAN SOCIETY OF HYPERTENSION":
+    "HIGH BLOOD PRESSURE & CARDIOVASCULAR PREVENTION"
+};
+const pmidBadges = {
+  "38752357": "🏆 Journal Cover",
+
+  "25133430": `
+🎙️ Interview to Prof. Santulli (JCI):
+<a href="https://www.jci.org/posts/200" target="_blank">JCI Interview</a><br>
+🌟 Featured in <a href="https://www.jci.org/this-month/2014/9" target="_blank">JCI Impact</a>
+  `,
+
+  "32403217": "🌟 High Citations (>800 citations)",
+  "29843915": "🌟 High Citations (>600 citations)",
+  "24478758": "🌟 High Citations (>370 citations)",
+
+  "37775305": "🏅 Editorial Commentary by Prof. G. Minotti",
+  "38135511": "🏅 Editorial Commentary by Prof. Franz H. Messerli",
+
+  "36478189": "⭐ Recommended in Faculty Opinions (Top 0.5%, Pharmacology & Drug Discovery – Prof. John Tayek, UCLA)",
+
+  "35703100": "🏆 Featured on the Cover",
+  "35042640": "🏅 Editorial Commentary",
+  "34389654": "🏆 Journal Cover",
+
+  "29593014": "⭐ F1000 Recommended Article",
+
+  "26217001": `
+🏅 Editorial Commentary<br>
+⭐ F1000 Recommended Article<br>
+🌟 Highly Cited (>650 citations; Thomson Reuters Top 1% in Biomedicine)
+  `,
+
+  "25844899": `
+🌟 Highly Cited (Thomson Reuters Top 1% in Biomedicine)<br>
+🎙️ Featured in <a href="http://www.jci.org/impacts/2015/5" target="_blank">JCI Impact</a>
+  `,
+
+  "35968698": `
+🏆 Journal Cover<br>
+🎙️ Interview in <a href="https://www.scientificamerican.com/article/too-much-good-cholesterol-can-harm-the-heart/" target="_blank">
+Scientific American</a>
+  `
 };
 
-const pmidBadges = {
-  /* same badges as before */
-};
+
+
 
 async function fetchPubMed() {
   const esearch = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(query)}&retmode=json&usehistory=y`;
@@ -439,9 +373,14 @@ async function fetchPubMed() {
       const pmid = a.querySelector("PMID")?.textContent;
       const title = a.querySelector("ArticleTitle")?.textContent || "";
       const year = a.querySelector("PubDate > Year")?.textContent || "n.d.";
-      const authors = [...a.querySelectorAll("Author")].map(x => `${x.querySelector("ForeName")?.textContent||""} ${x.querySelector("LastName")?.textContent||""}`).join(", ").replace(/Gaetano Santulli/g, "<u>Gaetano Santulli</u>");
+      const authors = [...a.querySelectorAll("Author")]
+        .map(x => `${x.querySelector("ForeName")?.textContent||""} ${x.querySelector("LastName")?.textContent||""}`)
+        .join(", ")
+        .replace(/Gaetano Santulli/g, "<u>Gaetano Santulli</u>");
       const doi = [...a.querySelectorAll("ArticleId")].find(x => x.getAttribute("IdType") === "doi")?.textContent;
-      const abstractText = a.querySelector("AbstractText")?.textContent || "Abstract not available.";
+      const abstractText =
+        a.querySelector("AbstractText")?.textContent ||
+        "Please click on the DOI to read this article.";
       articles.push({ pmid, title, authors, journal, year, doi, abstractText });
     });
   }
@@ -449,40 +388,37 @@ async function fetchPubMed() {
   let html = "<ul class='pub-list content'>";
   let pubNumber = articles.length;
   articles.forEach((art, index) => {
-    html += `<li 
-      data-title="${art.title}" 
-      data-authors="${art.authors.replace(/"/g, '&quot;')}" 
-      data-journal="${art.journal.replace(/"/g, '&quot;')}" 
-      style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
-      <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
-      <em>${art.authors}</em><br>
-      <strong class="journal">${art.journal}</strong>. ${art.year}.
-      ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
-      <div class="abstract">${art.abstractText}</div>`;
-
-    if (pmidBadges[art.pmid]) {
-      for (let i = 0; i < pmidBadges[art.pmid].length; i++) {
-        let text = pmidBadges[art.pmid][i];
-        let link = null;
-        if (i + 1 < pmidBadges[art.pmid].length && pmidBadges[art.pmid][i + 1].startsWith("http")) {
-          link = pmidBadges[art.pmid][i + 1];
-          i++;
-        }
-        html += `<div class="gold-note">${link ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${text}</a>` : text}</div>`;
+  // Check if this article has badges
+  let badgesHtml = "";
+  if (pmidBadges[art.pmid]) {
+    pmidBadges[art.pmid].forEach(b => {
+      if (b.link) {
+        badgesHtml += `<div class="gold-note"><a href="${b.link}" target="_blank" rel="noopener noreferrer">${b.text}</a></div>`;
+      } else {
+        badgesHtml += `<div class="gold-note">${b.text}</div>`;
       }
-    }
+    });
+  }
 
-    html += `</li>`;
-    pubNumber--;
-  });
+  html += `<li 
+    data-title="${art.title}" 
+    data-authors="${art.authors.replace(/"/g, '&quot;')}" 
+    data-journal="${art.journal.replace(/"/g, '&quot;')}" 
+    style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
+    <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
+    <em>${art.authors}</em><br>
+    <strong class="journal">${art.journal}</strong>. ${art.year}.
+    ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
+    ${badgesHtml}
+    <div class="abstract">${art.abstractText}</div>
+  </li>`;
+  pubNumber--;
+});
+
+
 
   html += "</ul>";
   document.getElementById("publications").innerHTML = html;
-
-  const pubmedTitles = [...document.querySelectorAll("#publications strong a")].map(x => x.textContent.trim());
-  document.querySelectorAll("#recent-list li").forEach(li => {
-    if (pubmedTitles.includes(li.dataset.title)) li.style.display = "none";
-  });
 }
 
 fetchPubMed();
