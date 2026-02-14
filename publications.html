@@ -522,17 +522,9 @@ async function fetchPubMed() {
       ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
       <div class="abstract">${art.abstractText}</div>`;
 
-    if (pmidBadges[art.pmid]) {
-      for (let i = 0; i < pmidBadges[art.pmid].length; i++) {
-        let text = pmidBadges[art.pmid][i];
-        let link = null;
-        if (i + 1 < pmidBadges[art.pmid].length && pmidBadges[art.pmid][i + 1].startsWith("http")) {
-          link = pmidBadges[art.pmid][i + 1];
-          i++;
-        }
-        html += `<div class="gold-note">${link ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${text}</a>` : text}</div>`;
-      }
-    }
+   if (pmidBadges[art.pmid]) {
+  html += `<div class="gold-note">${pmidBadges[art.pmid]}</div>`;
+}
 
     html += `</li>`;
     pubNumber--;
