@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact – Prof. Gaetano Santulli</title>
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>Contact - Prof. Gaetano Santulli</title>
 
 <style>
 /* -------------------------
    Reset & base styling
 ------------------------- */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.7;
+  line-height: 1.6;
   background-color: #000000;
   color: #eaeaea;
 }
@@ -25,7 +22,7 @@ body {
 ------------------------- */
 nav {
   background-color: #00755E;
-  padding: 14px 24px;
+  padding: 12px 24px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -38,7 +35,6 @@ nav ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 nav li {
@@ -57,182 +53,150 @@ nav a:hover {
   color: #d0f0e8;
 }
 
-/* Hamburger */
-.hamburger {
-  display: none;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 26px;
-  position: absolute;
-  right: 20px;
-  top: 12px;
-}
-
-@media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-    display: none;
-  }
-  nav ul.active {
-    display: flex;
-  }
-  nav li {
-    margin: 12px 0;
-  }
-  .hamburger {
-    display: block;
-  }
-}
-
 /* -------------------------
-   Hero Image
-------------------------- */
-.hero {
-  width: 100%;
-  max-height: 350px;
-  object-fit: cover;
-  display: block;
-  margin-bottom: 40px;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
-/* -------------------------
-   Page Content
+   Page content
 ------------------------- */
 .content {
   max-width: 900px;
-  margin: 0 auto 60px;
+  margin: 60px auto;
   padding: 0 24px;
 }
 
-.content h1 {
+.content h1, .content h2 {
+  color: #ffffff;
+  margin-bottom: 20px;
   text-align: center;
-  font-size: 2.2em;
-  margin-bottom: 15px;
-}
-
-.content h2 {
-  text-align: center;
-  font-size: 1.8em;
-  margin-bottom: 15px;
-  color: #36d1dc;
-  letter-spacing: 0.5px;
 }
 
 .content p {
-  text-align: center;
-  font-size: 17px;
   color: #cccccc;
-  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 15px;
 }
 
 /* -------------------------
-   Divider above donations
+   Contact Form
 ------------------------- */
-.section-divider {
-  width: 120px;
-  height: 3px;
-  margin: 70px auto 35px;
-  background: linear-gradient(to right, #36d1dc, #5b86e5);
-  border-radius: 3px;
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: none;
+  background-color: #111111;
+  color: #eaeaea;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+form input::placeholder, form textarea::placeholder {
+  color: #888888;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 12px #36d1dc;
+  border: 1px solid #36d1dc;
+}
+
+form button {
+  padding: 12px 25px;
+  background-color: #36d1dc;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+form button:hover, form button:focus {
+  background-color: #5b86e5;
+  box-shadow: 0 0 15px #36d1dc, 0 4px 10px rgba(54, 209, 220, 0.5);
 }
 
 /* -------------------------
-   Contact Info Box
+   Links
 ------------------------- */
-.contact-info {
-  background-color: rgba(54, 209, 220, 0.06);
-  border-left: 5px solid #36d1dc;
-  border-radius: 14px;
-  padding: 28px 22px;
-  margin: 45px 0;
+a {
+  color: #5b86e5;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #d0f0e8;
+  text-decoration: underline;
+}
+
+/* -------------------------
+   Footer
+------------------------- */
+footer {
   text-align: center;
+  padding: 20px;
+  background-color: #00755E;
+  color: #e6fff8;
+  margin-top: 60px;
+  font-size: 14px;
 }
+</style>
+</head>
 
+<body>
 
-   
-
-<!-- Navigation -->
 <nav>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <ul id="nav-menu">
-    <li><a href="/gaetanosantulli/about.html">About</a></li>
-    <li><a href="/gaetanosantulli/team.html">Team</a></li>
-    <li><a href="/gaetanosantulli/publications.html">Publications</a></li>
-    <li><a href="/gaetanosantulli/areas-of-interest.html">Areas of Interests</a></li>
-    <li><a href="/gaetanosantulli/funding.html">Funding</a></li>
-    <li><a href="/gaetanosantulli/awards-honors.html">Awards &amp; Honors</a></li>
-    <li><a href="/gaetanosantulli/books.html">Books</a></li>
-    <li><a href="/gaetanosantulli/clinical-publications.html">Clinical Publications</a></li>
-    <li><a href="/gaetanosantulli/contact.html">Contact</a></li>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="areas-of-interest.html">Areas of Interests</a></li>
+    <li><a href="funding.html">Funding</a></li>
+    <li><a href="awards-honors.html">Awards &amp; Honors</a></li>
+    <li><a href="patents.html">Patents</a></li>
+    <li><a href="books.html">Books</a></li>
+    <li><a href="clinical-publications.html">Clinical Publications</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
-<img src="hero_contact.jpeg" alt="Contact Hero" class="hero">
-
 <div class="content">
+  <h1>Contact Prof. Gaetano Santulli</h1>
+  <p>If you have questions or would like to get in touch, please use the form below.</p>
 
-  <h1 class="fade-in">Contact Prof. Gaetano Santulli</h1>
-  <p class="fade-in">
-    For inquiries regarding research, collaborations, or speaking engagements,
-    please use the contact information below.
+  <form>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="John Doe">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="johndoe@example.com">
+
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" placeholder="Question about publications">
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="6" placeholder="Write your message here..."></textarea>
+
+    <button type="submit">Send</button>
+  </form>
+
+  <p style="margin-top:30px;">
+    <strong>Mock Contact Info:</strong><br>
+    Prof. Gaetano Santulli, MD, PhD, FAHA<br>
+    Medical Professor - Clinical (Full Professor - Cardiologist)<br>
+    City University of New York - School of Medicine, Manhattan, NY<br>
+    Email: <a href="mailto:gsantulli@example.com">gsantulli001@gmail.com</a><br>
   </p>
-
-  <div class="contact-info fade-in">
-    <p><strong>Prof. Gaetano Santulli, MD, PhD, FAHA</strong></p>
-    <p>Medical Professor – Clinical (Full Professor – Cardiologist)</p>
-    <p>City University of New York – School of Medicine, Manhattan, NY</p>
-    <p>Email: <a href="mailto:gsantulli@med.cuny.edu">gsantulli001@med.cuny.edu</a></p>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <h2 class="fade-in">Support Our Work</h2>
-  <p class="fade-in">
-    If you would like to support our research and educational activities,
-    you can donate using the options below.
-  </p>
-  <p class="fade-in"><em>You will be acknowledged in our publications.</em></p>
-
-  <div class="donation">
-    <div class="donation-card fade-in">
-      <img src="paypal.png" alt="PayPal QR">
-      <a class="donate-btn" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=gsantulli001@gmail.com" target="_blank">
-        Donate via PayPal
-      </a>
-    </div>
-
-    <div class="donation-card fade-in">
-      <img src="venmo.png" alt="Venmo QR">
-      <a class="donate-btn" href="https://venmo.com/code?user_id=3952225357400095618&created=1769036924.992568" target="_blank">
-        Donate via Venmo
-      </a>
-    </div>
-  </div>
-
 </div>
 
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
-
-<script>
-function toggleMenu() {
-  document.getElementById('nav-menu').classList.toggle('active');
-}
-
-/* Fade-in observer */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
