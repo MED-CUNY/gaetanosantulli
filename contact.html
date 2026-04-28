@@ -21,7 +21,7 @@ body {
    Navigation bar
 ------------------------- */
 nav {
-  background-color: #00755E;
+  background-color: #00755E; /* Tropical Rain Forest */
   padding: 12px 24px;
   position: sticky;
   top: 0;
@@ -50,7 +50,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #d0f0e8;
+  color: #d0f0e8; /* subtle mint hover */
 }
 
 /* -------------------------
@@ -121,6 +121,34 @@ form button:hover, form button:focus {
 }
 
 /* -------------------------
+   Donation Section
+------------------------- */
+.donation {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.donation div {
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.donation div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+}
+
+.donation img {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* -------------------------
    Links
 ------------------------- */
 a {
@@ -150,6 +178,7 @@ footer {
 
 <body>
 
+<!-- Navigation Bar -->
 <nav>
   <ul>
     <li><a href="about.html">About</a></li>
@@ -165,10 +194,12 @@ footer {
   </ul>
 </nav>
 
+<!-- Page Content -->
 <div class="content">
   <h1>Contact Prof. Gaetano Santulli</h1>
   <p>If you have questions or would like to get in touch, please use the form below.</p>
 
+  <!-- Contact Form -->
   <form>
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" placeholder="John Doe">
@@ -185,6 +216,7 @@ footer {
     <button type="submit">Send</button>
   </form>
 
+  <!-- Contact Info -->
   <p style="margin-top:30px;">
     <strong>Mock Contact Info:</strong><br>
     Prof. Gaetano Santulli, MD, PhD, FAHA<br>
@@ -192,8 +224,31 @@ footer {
     City University of New York - School of Medicine, Manhattan, NY<br>
     Email: <a href="mailto:gsantulli@example.com">gsantulli001@gmail.com</a><br>
   </p>
+
+  <!-- Donation Section -->
+  <h2>Support Our Work / Donate</h2>
+  <p>If you would like to support our research and educational activities, you can donate via PayPal or Venmo:</p>
+
+  <div class="donation">
+    <!-- PayPal -->
+    <div>
+      <a href="https://www.paypal.com/donate?hosted_button_id=MOCKID" target="_blank">
+        <img src="paypal.png" alt="PayPal QR Code">
+      </a>
+      <p>PayPal</p>
+    </div>
+
+    <!-- Venmo -->
+    <div>
+      <a href="https://venmo.com/MOCKUSERNAME" target="_blank">
+        <img src="venmo.png" alt="Venmo QR Code">
+      </a>
+      <p>Venmo</p>
+    </div>
+  </div>
 </div>
 
+<!-- Footer -->
 <footer>
   &copy; 2026 Prof. Gaetano Santulli
 </footer>
