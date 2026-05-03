@@ -504,6 +504,31 @@ async function fetchPubMed() {
     });
   }
 
+
+// === ADD CUSTOM PUBLICATION + POSITIONING ===
+articles.push({
+  pmid: "custom-adm-2025",
+  title: "Integrating Adrenomedullin and Endothelial Dysfunction in the Regulation of Blood Pressure",
+  authors: "Fahimeh Varzideh, Pasquale Mone, <u>Gaetano Santulli</u>",
+  journal: "SCIENCE",
+  year: "2025",
+  doi: "",
+  abstractText: "Endothelial dysfunction and insulin resistance are major hallmarks of hypertension. Thus, the interplay between Adrenomedullin (ADM), endothelial function, and blood pressure has crucial clinical implications. Elevated plasma ADM levels have been recently proposed as a biomarker for cardiovascular risk stratification, particularly in hypertensive patients with endothelial dysfunction and in patients with heart failure with preserved ejection fraction (HFpEF). Indeed, therapeutic strategies aimed at modulating ADM activity are being explored as potential treatments for hypertension and vascular disorders. Moreover, ADM mitigates oxidative stress by downregulating reactive oxygen species (ROS) production and upregulating antioxidant defenses. Therefore, understanding the intricate relationship between ADM and blood pressure may lead to novel therapeutic approaches for cardiovascular disease prevention and management.",
+  link: "https://www.researchgate.net/publication/389888966_Integrating_Adrenomedullin_and_Endothelial_Dysfunction_in_the_Regulation_of_Blood_Pressure"
+});
+
+// Force correct position between the two specific papers
+articles.sort((a, b) => {
+  if (a.title.includes("The calcium awakens")) return -1;
+  if (b.title.includes("The calcium awakens")) return 1;
+
+  if (a.title.includes("Integrating Adrenomedullin")) return -1;
+  if (b.title.includes("Integrating Adrenomedullin")) return 1;
+
+  return 0;
+});
+
+
   let html = "<ul class='pub-list content'>";
   let pubNumber = articles.length;
   articles.forEach((art, index) => {
@@ -512,7 +537,8 @@ async function fetchPubMed() {
       data-authors="${art.authors.replace(/"/g, '&quot;')}" 
       data-journal="${art.journal.replace(/"/g, '&quot;')}" 
       style="animation: fadeInUp 0.8s ease-out forwards; animation-delay:${index*0.03}s">
-      <strong>${pubNumber}) <a href="https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/" target="_blank">${art.title}</a></strong><br>
+      <strong>${pubNumber}) <a href="${art.link ? art.link : `https://pubmed.ncbi.nlm.nih.gov/${art.pmid}/`}"
+ target="_blank">${art.title}</a></strong><br>
       <em>${art.authors}</em><br>
       <strong class="journal">${art.journal}</strong>. ${art.year}.
       ${art.doi ? `<br>DOI: <a href="https://doi.org/${art.doi}" target="_blank">${art.doi}</a>` : ""}
