@@ -362,6 +362,7 @@ footer {
 <script>
 // ---------------------------
 // PI
+
 const pi = {
   name: "Prof. Gaetano Santulli",
   role1: "Professor",
@@ -371,21 +372,32 @@ const pi = {
 };
 
 const piRow = document.getElementById('pi-row');
+
 piRow.innerHTML = `
   <div class="team-member pi-member">
-    <img src="${pi.photo}" alt="${pi.name}" style="width:140px;height:140px;border-radius:6px;margin-bottom:12px;">
+    <img src="${pi.photo}" 
+         alt="${pi.name}" 
+         style="width:140px;height:140px;border-radius:6px;margin-bottom:12px;">
+
     <div class="member-name">${pi.name}</div>
     <div class="member-role">${pi.role1}</div>
     <div class="member-role">${pi.role2}</div>
+
     <div class="member-role">
-      <a href="${pi.scholarUrl}" target="_blank" class="scholar-link"><i>Scholar Profile</i></a>
+      <a href="${pi.scholarUrl}" 
+         target="_blank" 
+         class="hindex-link">
+         <i>Scholar Profile</i>
+      </a>
     </div>
   </div>
 `;
 
-const scholarLink = piRow.querySelector('.scholar-link');
-setTimeout(() => { scholarLink.classList.add('show'); }, 100);
-};
+const scholarLink = piRow.querySelector('.hindex-link');
+
+setTimeout(() => {
+  scholarLink.classList.add('show');
+}, 100);
 
 
 
