@@ -366,8 +366,8 @@ const pi = {
   name: "Prof. Gaetano Santulli",
   role1: "Professor",
   role2: "Principal Investigator",
-  hIndex: 110,
-  photo: "santulli.jpg"
+  photo: "santulli.jpg",
+  scholarUrl: "https://scholar.google.com/citations?hl=en&user=IX4IYaEAAAAJ&inst=151474670492416252"
 };
 
 const piRow = document.getElementById('pi-row');
@@ -377,12 +377,17 @@ piRow.innerHTML = `
     <div class="member-name">${pi.name}</div>
     <div class="member-role">${pi.role1}</div>
     <div class="member-role">${pi.role2}</div>
-    <div class="member-role">H-index: <a href="https://scholar.google.com/citations?user=IX4IYaEAAAAJ&hl=en" target="_blank" class="hindex-link">${pi.hIndex}</a></div>
+    <div class="member-role">
+      <a href="${pi.scholarUrl}" target="_blank" class="scholar-link"><i>Scholar Profile</i></a>
+    </div>
   </div>
 `;
 
-const hIndexLink = piRow.querySelector('.hindex-link');
-setTimeout(() => { hIndexLink.classList.add('show'); }, 100);
+const scholarLink = piRow.querySelector('.scholar-link');
+setTimeout(() => { scholarLink.classList.add('show'); }, 100);
+};
+
+
 
 // ---------------------------
 // Line 2
